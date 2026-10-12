@@ -203,8 +203,72 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
 .words span{font-family:var(--sans);font-size:2.1cqw;border:.2cqw solid #5E7360;border-radius:5cqw;padding:.6cqw 1.8cqw;color:#ECEEE9}
 .slide.light .words span{color:#1E2621}
 
+/* printables */
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--poppy);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sheetlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.sheetlist li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.sheetlist b{display:block;font-weight:500;font-size:1.08rem}
+.sbtns{display:flex;gap:.5rem}
+dialog#sheetDialog{width:min(860px,96vw);max-height:92vh;padding:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+dialog#sheetDialog::backdrop{background:rgba(0,0,0,.55)}
+.dlg-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.75rem 1rem;background:var(--surface);border-bottom:1px solid var(--line);z-index:1}
+.dlg-head h3{margin:0;font-size:1.1rem}
+.dlg-body{padding:1rem;background:color-mix(in srgb,var(--ink) 8%,var(--paper))}
+.dlg-body .sheet{box-shadow:0 1px 4px rgba(0,0,0,.2);max-width:210mm;margin:0 auto}
+#printroot{display:none}
+.sheet{background:#fff;color:#111;font-family:var(--serif);padding:10mm 12mm;line-height:1.4}
+.sheet svg{max-width:100%}
+.sheet h1{font-size:22pt;font-weight:500;margin:0 0 3mm;line-height:1.15}
+.sheet .nm{font-family:var(--sans);font-size:10.5pt;display:flex;gap:8mm;margin:0 0 4mm}
+.sheet .nm span{flex:1;border-bottom:1px solid #111;padding-bottom:5mm}
+.sheet .inst{font-family:var(--sans);font-size:10.5pt;color:#333;margin:0 0 5mm}
+.sheet .q{font-family:var(--sans);font-size:11pt;font-weight:600;margin:4mm 0 1mm}
+.sheet .hint{font-weight:400;color:#555}
+.sheet .lines div{border-bottom:1px solid #999;height:8.5mm}
+.sheet .box{border:1.2px solid #111;border-radius:2mm}
+.sheet .cut{border:1.5px dashed #888}
+.sheet .tpl{padding:3mm;margin-bottom:4mm;text-align:center}
+.sheet .tpl svg{height:92mm;width:auto}
+.sheet .frame{border:1.2px solid #111;padding:4mm}
+.pcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4mm}
+.pcard{padding:4mm 5mm;font-size:10pt;break-inside:avoid}
+.pcard h2{font-size:13pt;font-weight:600;margin:0 0 2mm}
+.pcard p{margin:0 0 1.5mm}
+.pcard .fq{border-top:1px solid #ccc;padding-top:1.5mm;margin-top:2mm}
+.notes-t{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:10pt}
+.notes-t th,.notes-t td{border:1px solid #bbb;padding:2mm 3mm;text-align:left;vertical-align:top}
+.notes-t td:first-child{width:35%;font-weight:600}
+.rcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4mm}
+.rcard{padding:4mm 5mm;font-family:var(--sans);font-size:9.5pt}
+.rcard p{margin:2mm 0 0}
+.rcard .lines div{height:7mm}
+.tcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4mm}
+.tcard{padding:6mm;text-align:center;min-height:38mm;display:flex;flex-direction:column;justify-content:center}
+.tcard b{font-size:24pt;font-weight:600;display:block}
+.tcard span{font-size:12pt}
+.strip{height:24mm;margin-bottom:2.5mm;display:flex;align-items:flex-start;padding:2mm 4mm;font-family:var(--sans);font-size:10pt;color:#555}
+.fold-half{height:125mm;padding:8mm 10mm;display:flex;flex-direction:column;justify-content:center}
+.fold{border-top:1.5px dotted #555}
+.big-out{text-align:center;font-size:40pt;font-weight:600;color:#fff;-webkit-text-stroke:1.2px #111;margin:0}
+.aline{display:flex;align-items:flex-end;gap:4mm;height:22mm}
+.aline b{font-size:28pt;font-weight:600;width:14mm}
+.aline span{flex:1;border-bottom:1px solid #999;height:12mm}
+.ws{border-collapse:collapse;margin:0 auto 5mm;font-family:var(--sans)}
+.ws td{width:10mm;height:10mm;text-align:center;font-size:13pt;border:1px solid #ddd}
+.wslist{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm;font-family:var(--sans);font-size:11pt}
+.mcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3mm}
+.mcard{min-height:40mm;padding:3mm;text-align:center;display:flex;flex-direction:column;justify-content:center;font-family:var(--sans)}
+.mcard b{font-size:12pt;overflow-wrap:anywhere}
+.mcard span{font-size:10pt}
+.mcard.sym{background:#f4f4f4}
+.slidebtn{font-family:var(--sans);font-size:3cqw;padding:1.5cqw 4cqw;margin-top:3cqw;border-radius:1cqw;border:0;background:#E2483B;color:#fff;cursor:pointer;font-variant-numeric:tabular-nums}
+
 @media print{
-  .topbar,.hero,.viewer,.controls,.printrow,#quick,#briefing,#activities,#links,footer,.tabs,.themebtn{display:none!important}
+  .topbar,.hero,.viewer,.controls,.printrow,#quick,#briefing,#printables,#activities,#links,footer,.tabs,.themebtn,dialog{display:none!important}
+  body.print-sheet > *:not(#printroot){display:none!important}
+  body.print-sheet #printroot{display:block!important}
+  body.print-sheet .sheet{padding:0;box-shadow:none}
+  @page{size:A4;margin:12mm}
   body{background:#fff;color:#000;font-size:11pt}
   section{border:0;padding:0}
   .panel[hidden]{display:none!important}
@@ -218,9 +282,10 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
   <div class="wrap">
     <a class="brand" href="#top"><svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true"><use href="#poppy"/></svg><span>Remembrance Day 2026</span></a>
     <nav class="navlinks" aria-label="Sections">
+      <a href="#briefing">Teacher briefing</a>
       <a href="#lessons">Lesson plans</a>
       <a href="#quick">Quick lessons</a>
-      <a href="#briefing">Teacher briefing</a>
+      <a href="#printables">Printables</a>
       <a href="#activities">Activities</a>
       <a href="#links">Websites</a>
     </nav>
@@ -247,7 +312,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
       <div class="hero-grid">
         <div>
           <h1>At the eleventh hour of the eleventh day of the eleventh month</h1>
-          <p class="lede">Everything you need to teach and mark Remembrance Day at our school: lesson plans with slides for every year group, quick low-prep lessons, background notes and safe websites for students.</p>
+          <p class="lede">Everything you need to teach and mark Remembrance Day at our school: background notes, lesson plans with slides for every year group, quick low-prep lessons, printable worksheets and safe websites for students.</p>
         </div>
         <svg class="hero-poppy" viewBox="0 0 100 100" role="img" aria-label="Red poppy"><use href="#poppy"/></svg>
       </div>
@@ -255,6 +320,36 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
       <p class="count-caption">Until the minute's silence, 11:00am Wednesday 11 November 2026 (Perth time).</p>
     </div>
   </div>
+
+  <!-- BRIEFING -->
+  <section id="briefing">
+    <div class="wrap">
+      <h2>Teacher briefing</h2>
+      <p class="intro">Start here. Background you can read in five minutes before teaching, so you're ready for students' questions.</p>
+
+      <div class="facts">
+        <div class="fact"><h3>What we mark</h3><p>Remembrance Day marks the anniversary of the armistice that ended the fighting of the First World War at 11am on 11 November 1918. After the Second World War it was renamed to remember people who died or suffered in all wars, conflicts and peacekeeping operations. 2026 is the 108th anniversary.</p></div>
+        <div class="fact"><h3>The red poppy</h3><p>Poppies were among the first plants to flower in the churned-up battlefields of France and Belgium. The poem “In Flanders Fields” (1915) made them a symbol of remembrance, and the RSL first sold poppies in Australia in 1921.</p></div>
+        <div class="fact"><h3>The minute's silence</h3><p>A period of silence at 11am has been observed since 1919. In 1997 the Governor-General proclaimed that Australians observe one minute's silence at 11am on 11 November each year.</p></div>
+        <div class="fact"><h3>Last Post and Rouse</h3><p>The Last Post was the bugle call that signalled the end of a soldier's day; at services it acts as a farewell. The Rouse that follows calls soldiers back to their duty, and symbolises the living carrying on.</p></div>
+        <div class="fact"><h3>Australia and the First World War</h3><p>From a population of fewer than five million, about 416,000 Australians enlisted and more than 60,000 died. More than a third of Western Australian men aged 18 to 41 served, and about half of them were killed or wounded.</p></div>
+        <div class="fact"><h3>Here in Perth</h3><p>The State War Memorial in Kings Park was unveiled in 1929 and lists more than 7,000 Western Australians who died in the First World War. RSL WA holds the state service there each year, with a display of knitted poppies around the Flame of Remembrance.</p></div>
+        <div class="fact"><h3>Remembrance Day or Anzac Day?</h3><p>Anzac Day (25 April) marks the Gallipoli landing in 1915 and is linked with dawn services and rosemary. Remembrance Day (11 November) marks the end of the fighting in 1918 and is linked with the poppy and the 11am silence.</p></div>
+        <div class="fact"><h3>The Unknown Australian Soldier</h3><p>On 11 November 1993, the remains of an unidentified Australian soldier from the Western Front were placed in the Hall of Memory at the Australian War Memorial, representing all Australians who died in war.</p></div>
+      </div>
+
+      <h3>The Ode</h3>
+      <p class="prose">The fourth verse of Laurence Binyon's “For the Fallen” (1914). The reader says the verse; everyone responds with the last line.</p>
+      <blockquote class="ode">They shall grow not old, as we that are left grow old:<br>Age shall not weary them, nor the years condemn.<br>At the going down of the sun and in the morning<br>We will remember them.<br><br><span style="font-style:normal;font-family:var(--sans);font-size:1rem">All: We will remember them. Lest we forget.</span></blockquote>
+
+      <h3>Teaching the topic sensitively</h3>
+      <div class="callout prose">
+        <p>Some students have parents or relatives in the Australian Defence Force, or veterans in the family. Others may have lived through war themselves or have families who fled conflict.</p>
+        <p>Focus on remembering, peace and gratitude rather than battles. Preview any images or videos before showing them, avoid graphic content, and let students sit out a discussion if they need to. Follow your school's pastoral care process if a student is upset.</p>
+        <p>Veterans and their families can contact Open Arms, a free 24-hour counselling service, on 1800 011 046.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- LESSONS -->
   <section id="lessons">
@@ -292,7 +387,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
             <h4>Success criteria</h4>
             <ul><li>I can name the red poppy.</li><li>I can say one reason people wear it.</li><li>I can stay quiet and still for one minute.</li></ul>
             <h4>You will need</h4>
-            <ul><li>Red paper or paper plates, black pom-poms or buttons, green pipe cleaners, glue, safety pins or tape</li><li>A clock with hands</li></ul>
+            <ul><li>Red, black and green paper (or paper plates, black pom-poms and green pipe cleaners), glue, safety pins or tape</li><li>A clock with hands</li><li>Printable: <button class="linkbtn" type="button" data-sheet="poppy">Poppy template</button></li><li>Printable: <button class="linkbtn" type="button" data-sheet="colouring">Poppy field colouring page</button> for early finishers</li></ul>
             <h4>Adjusting the lesson</h4>
             <ul><li>Pre-primary: pre-cut petals and focus on the poppy and quiet time.</li><li>Year 2: add a simple caption to the poppy: “We remember.”</li></ul>
             <h4>Curriculum links</h4>
@@ -318,9 +413,9 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
               <li><b>Hook</b><span class="t">5 min</span><br>Write “11 / 11 / 11” on the board. What could it mean? Collect guesses before slide 3 reveals it.</li>
               <li><b>Origins</b><span class="t">10 min</span><br>Slides 2–4: the armistice, why 11am, and how Armistice Day became Remembrance Day after the Second World War. Add “armistice” and “commemorate” to the word wall.</li>
               <li><b>Symbols</b><span class="t">10 min</span><br>Slide 5. Discuss each symbol. Play 20 seconds of the Last Post and ask how it makes students feel.</li>
-              <li><b>Compare</b><span class="t">10 min</span><br>Slide 6. In pairs, students complete a Venn diagram comparing Remembrance Day and Anzac Day.</li>
+              <li><b>Compare</b><span class="t">10 min</span><br>Slide 6. In pairs, students complete the Venn diagram printable comparing Remembrance Day and Anzac Day.</li>
               <li><b>Memorials</b><span class="t">5 min</span><br>Slide 7. Is there a memorial near the school? Show it on a map if you can.</li>
-              <li><b>Symbol detective</b><span class="t">15 min</span><br>Slide 8. Students choose a symbol, draw it, and write what it is, what it means and how people use it on Remembrance Day. Display them near the assembly area.</li>
+              <li><b>Symbol detective</b><span class="t">15 min</span><br>Slide 8. Students complete the Symbol detective sheet: choose a symbol, draw it, and write what it is, what it means and how people use it on Remembrance Day. Display them near the assembly area.</li>
               <li><b>Reflect</b><span class="t">5 min</span><br>Which symbol do you think is the most powerful? Why?</li>
             </ol>
           </div>
@@ -328,7 +423,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
             <h4>Success criteria</h4>
             <ul><li>I can explain what happened at 11am on 11 November 1918.</li><li>I can describe at least two symbols of remembrance.</li><li>I can tell one difference between Remembrance Day and Anzac Day.</li></ul>
             <h4>You will need</h4>
-            <ul><li>A recording of the Last Post</li><li>Venn diagram sheets</li><li>Drawing paper and pencils</li></ul>
+            <ul><li>The <a href="https://anzacportal.dva.gov.au/commemoration/event-planning/music" target="_blank" rel="noopener">free Last Post recording</a> from the DVA Anzac Portal</li><li>Printable: <button class="linkbtn" type="button" data-sheet="venn">Venn diagram</button></li><li>Printable: <button class="linkbtn" type="button" data-sheet="detective">Symbol detective sheet</button></li></ul>
             <h4>Adjusting the lesson</h4>
             <ul><li>Support: give sentence starters (“The ___ means…”).</li><li>Extend: research the State War Memorial in Kings Park and write three facts.</li></ul>
             <h4>Curriculum links</h4>
@@ -354,8 +449,8 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
               <li><b>Numbers</b><span class="t">10 min</span><br>Slides 2–3. Put the numbers in context: if 1 in 3 WA men aged 18–41 served, what would that look like in our street or school? Discuss how numbers can hide people.</li>
               <li><b>Place</b><span class="t">10 min</span><br>Slide 4. Kings Park's State War Memorial and the Honour Avenues, where individual plaques line the roads. If possible, show photos of a local honour board.</li>
               <li><b>Who served</b><span class="t">5 min</span><br>Slide 5. Acknowledge the service of Aboriginal and Torres Strait Islander people, nurses and Australians from many backgrounds.</li>
-              <li><b>Research a name</b><span class="t">25 min</span><br>Slide 6. In pairs, students choose a name from a local memorial, an honour board or a list you prepare, then search the Australian War Memorial's Roll of Honour. Model one search first.</li>
-              <li><b>Remembrance card</b><span class="t">15 min</span><br>Slide 7. Each pair creates a card with the person's name, where they came from, one fact and a sentence of reflection. Cards can be placed on a display or carried by class representatives at the assembly.</li>
+              <li><b>Research a name</b><span class="t">25 min</span><br>Slide 6. Give each pair one of the eight People to research cards (all real people with a WA connection). They search for their person on the Australian War Memorial website to find out more. Model one search first, using Simpson Kirkpatrick.</li>
+              <li><b>Remembrance card</b><span class="t">15 min</span><br>Slide 7. Using the Remembrance card template, each pair creates a card with the person's name, where they came from, one fact and a sentence of reflection. Cards can be placed on a display or carried by class representatives at the assembly.</li>
               <li><b>Reflect</b><span class="t">5 min</span><br>Slide 8. Why might it matter to remember one person, not only a number?</li>
             </ol>
           </div>
@@ -363,9 +458,9 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
             <h4>Success criteria</h4>
             <ul><li>I can find and record details from a historical source.</li><li>I can describe one person's story respectfully.</li><li>I can explain why commemoration matters.</li></ul>
             <h4>You will need</h4>
-            <ul><li>Devices with internet access</li><li>A pre-checked list of names (recommended)</li><li>Card stock for remembrance cards</li></ul>
+            <ul><li>Devices with internet access</li><li>Printable: <button class="linkbtn" type="button" data-sheet="people">People to research cards</button> (one card per pair)</li><li>Printable: <button class="linkbtn" type="button" data-sheet="peoplenotes">Teacher notes for the cards</button></li><li>Printable: <button class="linkbtn" type="button" data-sheet="rcards">Remembrance card template</button>, ideally on card stock</li></ul>
             <h4>Teacher tip</h4>
-            <ul><li>Check each name first: some records include details of injury or death that may need sensitive handling.</li><li>Some students may want to research a family member; welcome this but don't require it.</li></ul>
+            <ul><li>Read the teacher notes first. They flag the cards where online records include details that need sensitive handling.</li><li>Suggested pairings: the two Throssell brothers, and the two nurses.</li><li>Some students may want to research a family member; welcome this but don't require it.</li></ul>
             <h4>Curriculum links</h4>
             <ul><li>HASS: questioning, researching and using sources</li><li>English: reflective writing</li><li>Check against your WA Curriculum scope and sequence.</li></ul>
           </div>
@@ -379,7 +474,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
   <section id="quick">
     <div class="wrap">
       <h2>Quick lessons</h2>
-      <p class="intro">Short, low-prep lessons that need little more than paper and pencils. Each comes with its own slides, and the set-up time is shown so you can pick one for a spare half hour.</p>
+      <p class="intro">Thirteen short, low-prep lessons that need little more than paper and pencils. Each comes with its own slides and any worksheets it needs, and the set-up time is shown so you can pick one for a spare half hour.</p>
       <div class="chips" role="group" aria-label="Filter by year group">
         <button class="chip" type="button" aria-pressed="true" data-f="all">All</button>
         <button class="chip" type="button" aria-pressed="false" data-f="0-2">Pre-primary – Year 2</button>
@@ -393,33 +488,12 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
     </div>
   </section>
 
-  <!-- BRIEFING -->
-  <section id="briefing">
+  <!-- PRINTABLES -->
+  <section id="printables">
     <div class="wrap">
-      <h2>Teacher briefing</h2>
-      <p class="intro">Background you can read in five minutes before teaching, so you're ready for students' questions.</p>
-
-      <div class="facts">
-        <div class="fact"><h3>What we mark</h3><p>Remembrance Day marks the anniversary of the armistice that ended the fighting of the First World War at 11am on 11 November 1918. After the Second World War it was renamed to remember people who died or suffered in all wars, conflicts and peacekeeping operations. 2026 is the 108th anniversary.</p></div>
-        <div class="fact"><h3>The red poppy</h3><p>Poppies were among the first plants to flower in the churned-up battlefields of France and Belgium. The poem “In Flanders Fields” (1915) made them a symbol of remembrance, and the RSL first sold poppies in Australia in 1921.</p></div>
-        <div class="fact"><h3>The minute's silence</h3><p>A period of silence at 11am has been observed since 1919. In 1997 the Governor-General proclaimed that Australians observe one minute's silence at 11am on 11 November each year.</p></div>
-        <div class="fact"><h3>Last Post and Rouse</h3><p>The Last Post was the bugle call that signalled the end of a soldier's day; at services it acts as a farewell. The Rouse that follows calls soldiers back to their duty, and symbolises the living carrying on.</p></div>
-        <div class="fact"><h3>Australia and the First World War</h3><p>From a population of fewer than five million, about 416,000 Australians enlisted and more than 60,000 died. More than a third of Western Australian men aged 18 to 41 served, and about half of them were killed or wounded.</p></div>
-        <div class="fact"><h3>Here in Perth</h3><p>The State War Memorial in Kings Park was unveiled in 1929 and lists more than 7,000 Western Australians who died in the First World War. RSL WA holds the state service there each year, with a display of knitted poppies around the Flame of Remembrance.</p></div>
-        <div class="fact"><h3>Remembrance Day or Anzac Day?</h3><p>Anzac Day (25 April) marks the Gallipoli landing in 1915 and is linked with dawn services and rosemary. Remembrance Day (11 November) marks the end of the fighting in 1918 and is linked with the poppy and the 11am silence.</p></div>
-        <div class="fact"><h3>The Unknown Australian Soldier</h3><p>On 11 November 1993, the remains of an unidentified Australian soldier from the Western Front were placed in the Hall of Memory at the Australian War Memorial, representing all Australians who died in war.</p></div>
-      </div>
-
-      <h3>The Ode</h3>
-      <p class="prose">The fourth verse of Laurence Binyon's “For the Fallen” (1914). The reader says the verse; everyone responds with the last line.</p>
-      <blockquote class="ode">They shall grow not old, as we that are left grow old:<br>Age shall not weary them, nor the years condemn.<br>At the going down of the sun and in the morning<br>We will remember them.<br><br><span style="font-style:normal;font-family:var(--sans);font-size:1rem">All: We will remember them. Lest we forget.</span></blockquote>
-
-      <h3>Teaching the topic sensitively</h3>
-      <div class="callout prose">
-        <p>Some students have parents or relatives in the Australian Defence Force, or veterans in the family. Others may have lived through war themselves or have families who fled conflict.</p>
-        <p>Focus on remembering, peace and gratitude rather than battles. Preview any images or videos before showing them, avoid graphic content, and let students sit out a discussion if they need to. Follow your school's pastoral care process if a student is upset.</p>
-        <p>Veterans and their families can contact Open Arms, a free 24-hour counselling service, on 1800 011 046.</p>
-      </div>
+      <h2>Printables</h2>
+      <p class="intro">Every worksheet, template and card set used in the lessons, ready to print on A4. Preview a sheet first, or print it straight away.</p>
+      <ul class="sheetlist" id="sheetList"></ul>
     </div>
   </section>
 
@@ -452,6 +526,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
           <li><a href="https://anzacportal.dva.gov.au/resources/poppies-here-they-come-day-remember" target="_blank" rel="noopener">Poppies: Here they come — A day to remember</a><span class="tag kids">With students</span><p>Department of Veterans' Affairs story resource on the meaning of the poppy, written for primary students.</p></li>
           <li><a href="https://anzacportal.dva.gov.au/taxonomy/term/1745" target="_blank" rel="noopener">Anzac Portal primary teaching presentations</a><span class="tag kids">With students</span><p>Ready-made class presentations, including one that explains the difference between celebrating and commemorating for lower primary.</p></li>
           <li><a href="https://www.awm.gov.au/commemoration/remembrance-day" target="_blank" rel="noopener">Australian War Memorial: Remembrance Day</a><span class="tag kids">With students</span><p>The national memorial's page about the day and its national ceremony.</p></li>
+          <li><a href="https://anzacportal.dva.gov.au/resources/bugles-last-post-here-they-come-day-remember" target="_blank" rel="noopener">Bugles and the Last Post (video)</a><span class="tag kids">With students</span><p>A short DVA video for lower primary explaining what a bugle is and why the Last Post is played, with a bugler performing it.</p></li>
           <li><a href="https://www.abc.net.au/btn" target="_blank" rel="noopener">BTN (Behind the News)</a><span class="tag kids">With students</span><p>The ABC's news program for children. Search “Remembrance Day” for short explainer stories.</p></li>
           <li><a href="https://www.abc.net.au/education" target="_blank" rel="noopener">ABC Education</a><span class="tag kids">With students</span><p>Free videos and classroom resources. Search “Remembrance Day” or “Anzac”.</p></li>
         </ul>
@@ -463,6 +538,9 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
         <ul class="links">
           <li><a href="https://www.awm.gov.au/learn/schools/resources/commemoration" target="_blank" rel="noopener">AWM Commemoration hub for schools</a><span class="tag teach">Teachers</span><p>Background, discussion questions and activities for all year levels, including crafts and a Street View tour of the Memorial's Commemorative Area.</p></li>
           <li><a href="https://anzacportal.dva.gov.au/classroom/teaching/commemoration" target="_blank" rel="noopener">DVA Anzac Portal: teaching commemoration</a><span class="tag teach">Teachers</span><p>Free classroom resources on days of commemoration and their symbols, plus guides for planning a school service.</p></li>
+          <li><a href="https://anzacportal.dva.gov.au/commemoration/event-planning/music" target="_blank" rel="noopener">Last Post and Rouse recordings</a><span class="tag teach">Teachers</span><p>Free downloadable recordings and playlists from the DVA Anzac Portal for lessons and your school service.</p></li>
+          <li><a href="https://anzacportal.dva.gov.au/commemoration/event-planning/speeches" target="_blank" rel="noopener">Sample Remembrance Day speeches</a><span class="tag teach">Teachers</span><p>DVA speeches you can adapt for a primary school service or for student leaders.</p></li>
+          <li><a href="https://anzacportal.dva.gov.au/stories/biographies/hugo-vivian-hope-throssell" target="_blank" rel="noopener">Hugo Throssell biography</a><span class="tag teach">Teachers</span><p>Background for the Throssell brothers’ research cards. Preview before sharing with students.</p></li>
           <li><a href="https://www.awm.gov.au/learn/memorial-boxes/upper-primary" target="_blank" rel="noopener">AWM Memorial Boxes: upper primary</a><span class="tag teach">Teachers</span><p>Source-based learning kits from the Memorial, with curriculum links for senior primary.</p></li>
           <li><a href="https://www.awm.gov.au" target="_blank" rel="noopener">Australian War Memorial Roll of Honour</a><span class="tag teach">Teachers</span><p>Search the Roll of Honour from the Memorial's website for the Years 5–6 lesson. Model a search before students try.</p></li>
         </ul>
@@ -480,6 +558,12 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
     </div>
   </section>
 </main>
+
+<dialog id="sheetDialog" aria-labelledby="sheetTitle">
+  <div class="dlg-head"><h3 id="sheetTitle"></h3><div class="sbtns"><button class="btn primary" type="button" id="sheetPrint">Print</button><button class="btn" type="button" id="sheetClose">Close</button></div></div>
+  <div class="dlg-body" id="sheetBody"></div>
+</dialog>
+<div id="printroot"></div>
 
 <footer>
   <div class="wrap">
@@ -521,7 +605,7 @@ const decks = {
     {h:`<p class="kicker">Western Australia's story</p><h2>More than a third of WA men aged 18 to 41 served in the First World War.</h2><p>About half of them were killed or wounded.</p>`,n:'Make it concrete: imagine one in three adult men from your street gone at once.'},
     {h:`<p class="kicker">Kings Park remembers</p><h2>The State War Memorial was unveiled in 1929.</h2><p>Along the Honour Avenues, more than 1,100 plaques each name one person, so they are remembered as individuals, not only as numbers.</p>`,n:'Show photos of the Honour Avenues or a local honour board if you have them.'},
     {h:`<p class="kicker">Who served?</p><h2>People from many backgrounds served Australia.</h2><p>Aboriginal and Torres Strait Islander people served, even though many were not treated as equal citizens at home. Nurses served close to the fighting. Migrants and the sons and daughters of migrants enlisted too.</p>`,n:'Acknowledge Aboriginal and Torres Strait Islander service. Students may know of family stories; invite but don\'t require sharing.'},
-    {c:'light',h:`<p class="kicker">How to research a name</p><ol class="steps"><li>Choose a name from a memorial, honour board or the class list.</li><li>Search the Roll of Honour on the Australian War Memorial website.</li><li>Record: their unit, where they came from, their age.</li><li>Look for one human detail: a job, a hometown, a family.</li></ol>`,n:'Model one search on the board first. Pre-check names for sensitive details.'},
+    {c:'light',h:`<p class="kicker">How to research a name</p><ol class="steps"><li>Read your People to research card.</li><li>Search for your person on the Australian War Memorial website (awm.gov.au).</li><li>Record: their unit, where they came from, their age.</li><li>Look for one human detail: a job, a hometown, a family.</li></ol>`,n:'Model one search first using Simpson Kirkpatrick. Check the teacher notes for cards that need sensitive handling.'},
     {c:'light',h:`<p class="kicker">Make a remembrance card</p><ol class="steps"><li>Their name</li><li>Where they came from</li><li>One fact about their life</li><li>One sentence: why we remember them</li></ol><div class="art" style="width:14cqw">${P()}</div>`,n:'Cards can go on a display or be carried by class representatives at the assembly.'},
     {c:'center',h:`<h2>Why might it matter to remember one person,<br>not only a number?</h2><p>Lest we forget.</p>`,n:'Close with a short discussion. Collect two or three responses.'}
   ]
@@ -571,7 +655,7 @@ const step = (title, time, text) => `<b>${title}</b><span class="t">${time}</spa
 const QUICK = [
   {
     id:'q-sounds', title:'Sounds of remembrance', years:[1,4], label:'Years 1–4', time:'30 minutes', setup:'2 minutes',
-    materials:['A recording of the Last Post (about 1 minute)','Paper and coloured pencils or crayons'],
+    materials:['The <a href="https://anzacportal.dva.gov.au/commemoration/event-planning/music" target="_blank" rel="noopener">free Last Post recording</a> from the DVA Anzac Portal (about 1.5 minutes)','Paper and coloured pencils or crayons'],
     tip:'Play the recording once before class so you know the volume is right for the room.',
     steps:[
       step('Listen','5 min','Slide 2. Students close their eyes and listen to the Last Post all the way through.'),
@@ -676,6 +760,277 @@ const QUICK = [
     ]
   }
 ];
+/* ---------- printable sheets ---------- */
+const OUT = (s='100%') => `<svg viewBox="0 0 100 100" style="width:${s};height:auto;display:block" aria-hidden="true"><g fill="none" stroke="#111" stroke-width="1.6"><ellipse cx="50" cy="29" rx="23" ry="21"/><ellipse cx="71" cy="50" rx="21" ry="23"/><ellipse cx="50" cy="71" rx="23" ry="21"/><ellipse cx="29" cy="50" rx="21" ry="23"/><circle cx="50" cy="50" r="13" fill="#fff"/></g></svg>`;
+const NAMELINE = `<div class="nm"><span>Name</span><span>Class</span></div>`;
+const LINES = n => `<div class="lines">${'<div></div>'.repeat(n)}</div>`;
+
+function poppyTemplate(){
+  const one = `<div class="cut tpl"><svg viewBox="0 0 200 150" aria-hidden="true"><g fill="none" stroke="#111" stroke-width="1.2" stroke-dasharray="4 3">
+    <ellipse cx="45" cy="45" rx="32" ry="30"/><text x="45" y="49" font-size="9" text-anchor="middle" font-family="sans-serif" fill="#555" stroke="none">red</text>
+    <ellipse cx="115" cy="45" rx="32" ry="30"/><text x="115" y="49" font-size="9" text-anchor="middle" font-family="sans-serif" fill="#555" stroke="none">red</text>
+    <ellipse cx="45" cy="110" rx="32" ry="30"/><text x="45" y="114" font-size="9" text-anchor="middle" font-family="sans-serif" fill="#555" stroke="none">red</text>
+    <ellipse cx="115" cy="110" rx="32" ry="30"/><text x="115" y="114" font-size="9" text-anchor="middle" font-family="sans-serif" fill="#555" stroke="none">red</text>
+    <circle cx="175" cy="35" r="16"/><text x="175" y="38" font-size="8" text-anchor="middle" font-family="sans-serif" fill="#555" stroke="none">black</text>
+    <rect x="168" y="60" width="14" height="80" rx="3"/><text x="175" y="104" font-size="8" text-anchor="middle" font-family="sans-serif" fill="#555" stroke="none" transform="rotate(-90 175 104)">green</text></g></svg></div>`;
+  return `<h1>Make a poppy</h1>${NAMELINE}<p class="inst">Cut out four petals from red paper, the centre from black paper and the stem from green paper. Overlap the petals, glue the centre on top, then add the stem. You can also trace these shapes onto coloured paper.</p>${one}${one}`;
+}
+function colouringPage(){
+  const pts=[[35,95,26],[100,70,30],[170,100,24],[60,160,22],[140,165,28],[205,150,18]];
+  let s='<svg viewBox="0 0 240 230" aria-hidden="true"><g fill="none" stroke="#111" stroke-width="1.3"><circle cx="205" cy="35" r="18"/><path d="M0 130 Q60 110 120 128 T240 120"/><path d="M0 200 Q70 185 140 198 T240 195"/>';
+  pts.forEach(([x,y,r])=>{ s+=`<path d="M${x} ${y+r*0.9} Q${x+4} ${y+r*2} ${x} 230"/><path d="M${x+2} ${y+r*1.6} q10 -6 16 -2 q-8 8 -16 2z"/><ellipse cx="${x}" cy="${y-r*0.45}" rx="${r*0.5}" ry="${r*0.45}"/><ellipse cx="${x+r*0.45}" cy="${y}" rx="${r*0.45}" ry="${r*0.5}"/><ellipse cx="${x}" cy="${y+r*0.45}" rx="${r*0.5}" ry="${r*0.45}"/><ellipse cx="${x-r*0.45}" cy="${y}" rx="${r*0.45}" ry="${r*0.5}"/><circle cx="${x}" cy="${y}" r="${r*0.28}" fill="#fff"/>`; });
+  return `<h1>We remember</h1>${NAMELINE}<p class="inst">Colour the poppy field. Think about who you would like to remember.</p><div class="frame">${s}</g></svg></div>`;
+}
+function venn(){
+  return `<h1>Remembrance Day or Anzac Day?</h1>${NAMELINE}<p class="inst">Write facts about each day in its circle. Write what the two days share in the middle.</p>
+  <svg viewBox="0 0 300 200" aria-hidden="true" style="width:100%"><g fill="none" stroke="#111" stroke-width="1.4"><circle cx="110" cy="105" r="88"/><circle cx="190" cy="105" r="88"/></g>
+  <g font-family="sans-serif" font-size="9" fill="#111" text-anchor="middle"><text x="70" y="10">Remembrance Day</text><text x="230" y="10">Anzac Day</text><text x="150" y="10" fill="#555">Both</text></g></svg>`;
+}
+function symbolDetective(){
+  return `<h1>Symbol detective</h1>${NAMELINE}<p class="inst">Choose one symbol of remembrance: the poppy, a wreath, the Last Post, the minute's silence, a memorial or rosemary.</p>
+  <p class="q">My symbol is:</p>${LINES(1)}<p class="q">Draw it carefully.</p><div class="box" style="height:70mm"></div>
+  <p class="q">What is it?</p>${LINES(2)}<p class="q">What does it mean?</p>${LINES(2)}<p class="q">How do people use it on Remembrance Day?</p>${LINES(2)}`;
+}
+const PEOPLE = [
+  {n:'Private John Simpson Kirkpatrick', wa:'Enlisted at Blackboy Hill camp, near Perth, on 25 August 1914. He has a plaque in the Kings Park Honour Avenues.', u:'3rd Field Ambulance (stretcher bearer), service number 202', f:'Born in South Shields, England, in 1892. He landed at Gallipoli on 25 April 1915 and used a donkey to carry wounded soldiers to safety. He died on 19 May 1915.', q:'Why do so many Australians still remember “the man with the donkey”?', t:'Records describe his death at Gallipoli in simple terms. Suitable for most students.'},
+  {n:'Sergeant Ric Throssell', wa:'Farmed at Cowcowing in the Wheatbelt. He enlisted at Northam with his younger brother Hugo on 29 September 1914.', u:'10th Light Horse Regiment', f:'Ric was killed at the Second Battle of Gaza on 19 April 1917. That night Hugo searched for him, whistling the signal the brothers had used as boys.', q:'What was the Light Horse, and where did it fight?', t:'Pair this card with Hugo Throssell’s card so students see the two brothers’ stories together.'},
+  {n:'Captain Hugo “Jim” Throssell VC', wa:'Born in Northam on 26 October 1884. A statue of him stands in Northam.', u:'10th Light Horse Regiment', f:'Awarded the Victoria Cross for bravery at Hill 60, Gallipoli, in August 1915. He was the only light horseman to receive it. He returned to Australia in 1918.', q:'What is the Victoria Cross, and why is it so rarely awarded?', t:'Some sources describe how Hugo died in 1933, which may be distressing. Preview pages before students open them.'},
+  {n:'Jack Axford VC MM', wa:'Grew up in Coolgardie, worked at the Boulder Brewery and enlisted at Kalgoorlie in 1915. Axford Park in Mount Hawthorn is named after him.', u:'16th Battalion', f:'Born in Carrieton, South Australia, in 1894. He was awarded the Victoria Cross for his actions at the Battle of Hamel, France, on 4 July 1918, and came home after the war.', q:'What happened at the Battle of Hamel?', t:'His medal citation describes close fighting. Summarise it for students rather than reading it aloud.'},
+  {n:'Staff Nurse Rosa O’Kane', wa:'Died at the Quarantine Station at Woodman Point, near Perth, on 21 December 1918.', u:'Australian Army Nursing Service', f:'From Charters Towers, Queensland. She died of pneumonic influenza six weeks after the fighting ended. Her name is on panel 188 of the Roll of Honour in Canberra.', q:'What was the 1918 influenza pandemic, and why were quarantine stations needed?', t:'A good way to show that the war’s cost continued after the Armistice.'},
+  {n:'Sister Alicia Kelly MM', wa:'Lived in Western Australia after the war and died in Midland in 1942. Her medals are displayed at the Army Museum of Western Australia.', u:'Australian Army Nursing Service', f:'Born in Galway, Ireland, in 1874. She joined the nursing service in 1915 and was one of only seven Australian nurses awarded the Military Medal for bravery under fire.', q:'What work did nurses do close to the fighting?', t:'Suitable for all students. Pairs well with Rosa O’Kane’s card.'},
+  {n:'Private Walter Parker', wa:'A Noongar man, born in Gingin on 6 July 1874.', u:'Western Australian contingent, Boer War (South Africa)', f:'He tried to enlist at least twice before he was accepted. He did not come home. In 2022 the Australian War Memorial recognised him as the earliest known Aboriginal soldier to die on overseas service.', q:'What was the Boer War, and why might Aboriginal volunteers have been turned away?', t:'His service is before the First World War. Use it to show Remembrance Day honours all wars and conflicts.'},
+  {n:'Frederick William Burgess', wa:'Born in Albany in 1899.', u:'Find out: which unit did he serve with?', f:'He was killed in action in France on 26 March 1917, aged about 18.', q:'What can you discover about his life before he enlisted?', t:'Less is known about Frederick, which makes him a good “detective” card for confident researchers. Discuss how young he was with care.'}
+];
+function peopleCards(){
+  return `<h1>People to research</h1><p class="inst">Each person served Australia and has a connection to Western Australia. Search for them on the Australian War Memorial website (awm.gov.au) using the search box, then choose “People”.</p>
+  <div class="pcards">${PEOPLE.map(p=>`<div class="cut pcard"><h2>${p.n}</h2><p><b>WA connection:</b> ${p.wa}</p><p><b>Served with:</b> ${p.u}</p><p><b>Starter fact:</b> ${p.f}</p><p class="fq"><b>Find out:</b> ${p.q}</p></div>`).join('')}</div>`;
+}
+function peopleNotes(){
+  return `<h1>People to research: teacher notes</h1><p class="inst">Read these before the lesson. Facts on the cards come from the Australian War Memorial, the DVA Anzac Portal and the Australian Dictionary of Biography.</p>
+  <table class="notes-t"><thead><tr><th>Person</th><th>Note for teachers</th></tr></thead><tbody>${PEOPLE.map(p=>`<tr><td>${p.n}</td><td>${p.t}</td></tr>`).join('')}</tbody></table>
+  <p class="inst" style="margin-top:6mm">Suggested pairings: the two Throssell brothers; the two nurses; Walter Parker with any First World War card to compare wars.</p>`;
+}
+function remembranceCards(){
+  const c = `<div class="cut rcard"><div style="width:16mm;margin-bottom:2mm">${OUT()}</div><p>Name</p>${LINES(1)}<p>Where they came from</p>${LINES(1)}<p>One fact about their life</p>${LINES(2)}<p>We remember them because…</p>${LINES(2)}</div>`;
+  return `<h1>Remembrance cards</h1><p class="inst">Cut out each card. Fill one in for the person you researched.</p><div class="rcards">${c.repeat(4)}</div>`;
+}
+const EVENTS = [['1914','The First World War begins'],['1915','Anzacs land at Gallipoli (25 April)'],['1918','The Armistice: fighting stops at 11am, 11 November'],['1921','Poppies first sold in Australia'],['1929','State War Memorial in Kings Park unveiled'],['1939–45','The Second World War'],['1947','Australians begin serving as peacekeepers'],['1993','The Unknown Australian Soldier is laid to rest in Canberra'],['1997','One minute’s silence at 11am proclaimed'],['2026','The 108th Remembrance Day']];
+function timelineCards(){
+  return `<h1>Timeline event cards</h1><p class="inst">Cut out the cards and peg them on the timeline. Scale: 10 cm for every 10 years.</p><div class="tcards">${EVENTS.map(([y,e])=>`<div class="cut tcard"><b>${y}</b><span>${e}</span></div>`).join('')}</div>`;
+}
+function peaceStrips(){
+  return `<h1>Peace wishes</h1><p class="inst">Cut along the dashed lines. Write or draw your wish, then loop the strips together to make a chain.</p>${'<div class="cut strip"><span>I wish for peace so that…</span></div>'.repeat(9)}`;
+}
+function thanksCard(){
+  return `<p class="inst" style="text-align:center">Fold backwards along the dotted line so the printing is on the outside. The poppy is the front; your message is on the back.</p>
+  <div class="fold-half"><div style="width:55mm;margin:0 auto 4mm">${OUT()}</div><p class="big-out">Thank you</p></div>
+  <div class="fold"></div>
+  <div class="fold-half" style="transform:rotate(180deg)"><p class="q">Dear</p>${LINES(5)}<p class="q">From</p>${LINES(1)}</div>`;
+}
+function acrostic(){
+  return `<h1>Acrostic poem: REMEMBER</h1>${NAMELINE}<p class="inst">Write a word or a line that starts with each letter.</p>${'REMEMBER'.split('').map(l=>`<div class="aline"><b>${l}</b><span></span></div>`).join('')}`;
+}
+/* word search, seeded so every copy is the same */
+const WS_WORDS = ['POPPY','SILENCE','MEMORIAL','VETERAN','WREATH','BUGLE','PEACE','ARMISTICE','REMEMBER','ANZAC','SERVICE','HONOUR'];
+const WS = (()=>{ let seed=11; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;}; const N=13; let g;
+  for(let attempt=0;attempt<200;attempt++){ g=Array.from({length:N},()=>Array(N).fill('')); let ok=true;
+    for(const w of [...WS_WORDS].sort((a,b)=>b.length-a.length)){ let placed=false;
+      for(let t=0;t<300&&!placed;t++){ const [dr,dc]=[[0,1],[1,0],[1,1]][Math.floor(rnd()*3)]; const r=Math.floor(rnd()*(N-dr*(w.length-1))), c=Math.floor(rnd()*(N-dc*(w.length-1)));
+        if([...w].every((ch,i)=>{const x=g[r+dr*i][c+dc*i];return x===''||x===ch;})){ [...w].forEach((ch,i)=>g[r+dr*i][c+dc*i]=ch); placed=true; } }
+      if(!placed){ok=false;break;} }
+    if(ok) break; }
+  const A='ABCDEFGHIJKLMNOPRSTUVWY'; return g.map(row=>row.map(ch=>ch||A[Math.floor(rnd()*A.length)])); })();
+function wordSearch(){
+  return `<h1>Remembrance word search</h1>${NAMELINE}<p class="inst">Find the words. They go across, down or diagonally.</p><table class="ws">${WS.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table><div class="wslist">${WS_WORDS.map(w=>`<span>${w}</span>`).join('')}</div>`;
+}
+const PAIRS = [['Poppy','A red flower worn to remember'],['Wreath','A ring of flowers laid at a memorial'],['The Last Post','A bugle call played to farewell those who died'],['The Rouse','A bugle call played after the silence'],['Minute’s silence','One minute of quiet at 11am'],['Memorial','A place with names that helps us remember'],['Rosemary','A herb worn on Anzac Day'],['11 November','The day the fighting stopped in 1918']];
+function matchCards(){
+  return `<h1>Symbols memory match</h1><p class="inst">Cut out the 16 cards. Shuffle them face down. Take turns to flip two cards and find a symbol and its meaning.</p><div class="mcards">${PAIRS.map(([a,b])=>`<div class="cut mcard sym"><div style="width:10mm;margin:0 auto 2mm">${OUT()}</div><b>${a}</b></div><div class="cut mcard"><span>${b}</span></div>`).join('')}</div>`;
+}
+function interview(){
+  return `<h1>Interview a grown-up</h1>${NAMELINE}<p class="inst">Ask a family member or another grown-up you trust. It is fine if they would rather not answer a question.</p>
+  <p class="q">1. Do you do anything to remember on Remembrance Day or Anzac Day?</p>${LINES(2)}
+  <p class="q">2. Do you know anyone who has served in the Navy, Army or Air Force? (Only if you are happy to share.)</p>${LINES(2)}
+  <p class="q">3. What do you think about during the minute’s silence?</p>${LINES(2)}
+  <p class="q">4. Why do you think it is important to remember?</p>${LINES(2)}
+  <p class="q">5. My own question:</p>${LINES(2)}
+  <p class="inst" style="margin-top:5mm">Note for families: this is part of our Remembrance Day learning. Please share only what you are comfortable with.</p>`;
+}
+function writingScaffold(){
+  const part=(h,hint,n)=>`<p class="q">${h} <span class="hint">${hint}</span></p>${LINES(n)}`;
+  return `<h1>Why we remember</h1>${NAMELINE}<p class="inst">Plan your reflection. Use the word bank: armistice, commemorate, sacrifice, service, peace, memorial, gratitude, future.</p>
+  ${part('Opening','Begin with a moment: 11am, the silence, a name on a memorial.',3)}${part('What happened','What happened on 11 November 1918?',3)}${part('Who we remember','Who do we remember today? You could name someone you researched.',3)}${part('Why it matters','Why is it important to keep remembering?',3)}${part('How I will remember','What will you do on Remembrance Day?',3)}`;
+}
+const SHEETS = {
+  poppy:{title:'Poppy template', use:'Pre-primary – Year 2 lesson', f:poppyTemplate},
+  colouring:{title:'Poppy field colouring page', use:'Pre-primary – Year 2, Poppy field colouring', f:colouringPage},
+  venn:{title:'Venn diagram: Remembrance Day and Anzac Day', use:'Years 3 – 4 lesson', f:venn},
+  detective:{title:'Symbol detective sheet', use:'Years 3 – 4 lesson', f:symbolDetective},
+  people:{title:'People to research cards (8 people)', use:'Years 5 – 6 lesson', f:peopleCards},
+  peoplenotes:{title:'People to research: teacher notes', use:'Years 5 – 6 lesson', f:peopleNotes},
+  rcards:{title:'Remembrance card template', use:'Years 5 – 6 lesson', f:remembranceCards},
+  timeline:{title:'Timeline event cards', use:'Timeline: 1918 to today', f:timelineCards},
+  strips:{title:'Peace chain strips', use:'Peace paper chain', f:peaceStrips},
+  thanks:{title:'Thank-you card', use:'Thank-you cards', f:thanksCard},
+  acrostic:{title:'Acrostic poem sheet', use:'Remembrance acrostic poems', f:acrostic},
+  wordsearch:{title:'Remembrance word search', use:'Remembrance words', f:wordSearch},
+  match:{title:'Symbols memory match cards', use:'Symbols memory match', f:matchCards},
+  interview:{title:'Interview a grown-up sheet', use:'Interview a grown-up', f:interview},
+  writing:{title:'Reflective writing planner', use:'Why we remember: reflective writing', f:writingScaffold}
+};
+const QSHEETS = {'q-acrostic':['acrostic'],'q-chain':['strips'],'q-timeline':['timeline'],'q-thanks':['thanks'],'q-words':['wordsearch'],'q-match':['match'],'q-interview':['interview'],'q-writing':['writing'],'q-colour':['colouring']};
+
+const dlg = document.getElementById('sheetDialog'), dlgBody = document.getElementById('sheetBody'), dlgTitle = document.getElementById('sheetTitle'), printRoot = document.getElementById('printroot');
+let currentSheet = null;
+function openSheet(id){
+  const s = SHEETS[id]; if(!s) return; currentSheet = id;
+  dlgTitle.textContent = s.title; dlgBody.innerHTML = `<div class="sheet">${s.f()}</div>`;
+  if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+}
+function printSheet(id){
+  const s = SHEETS[id]; if(!s) return;
+  printRoot.innerHTML = `<div class="sheet">${s.f()}</div>`; document.body.classList.add('print-sheet');
+  const done = ()=>{ document.body.classList.remove('print-sheet'); window.removeEventListener('afterprint', done); };
+  window.addEventListener('afterprint', done);
+  try{ window.print(); }catch(e){}
+  setTimeout(done, 1500);
+}
+document.getElementById('sheetPrint').onclick = ()=>printSheet(currentSheet);
+document.getElementById('sheetClose').onclick = ()=>{ if(dlg.close) dlg.close(); else dlg.removeAttribute('open'); };
+dlg.addEventListener('click', e=>{ if(e.target===dlg && dlg.close) dlg.close(); });
+document.addEventListener('click', e=>{ const b = e.target.closest('[data-sheet]'); if(b){ e.preventDefault(); openSheet(b.dataset.sheet); } });
+document.getElementById('sheetList').innerHTML = Object.entries(SHEETS).map(([id,s])=>`<li><div><b>${s.title}</b><span class="meta">For: ${s.use}</span></div><div class="sbtns"><button class="btn" type="button" data-sheet="${id}">Preview</button><button class="btn primary" type="button" onclick="printSheet('${id}')">Print</button></div></li>`).join('');
+
+/* live one-minute timer used on the silence slide */
+window.startSilence = function(btn, secs){
+  if(btn.dataset.running) return; btn.dataset.running='1'; let t=secs;
+  const tick=()=>{ if(!btn.isConnected) return; if(t>0){ btn.textContent=t+' seconds'; t--; setTimeout(tick,1000);} else { btn.textContent='Well done. Start again'; delete btn.dataset.running; } };
+  tick();
+};
+
+/* ---------- more quick lessons ---------- */
+QUICK.push(
+  {
+    id:'q-words', title:'Remembrance words', years:[2,6], label:'Years 2–6', time:'30 minutes', setup:'Print the word search',
+    materials:['Pencils or highlighters'],
+    tip:'Leave the vocabulary slides up while students search so they can match each word to its meaning.',
+    steps:[
+      step('Learn the words','10 min','Slides 2–3. Read each word and its meaning. Ask students to use one in a sentence.'),
+      step('Word search','15 min','Slide 4. Students find all 12 words.'),
+      step('Use them','5 min','Students choose three words and write a sentence that uses all three.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Remembrance words</h1>`, n:'Hand out the word search face down.'},
+      {h:`<div class="sgrid"><div><b>Armistice</b><span>An agreement to stop fighting.</span></div><div><b>Commemorate</b><span>To remember and honour together.</span></div><div><b>Memorial</b><span>A place or object that helps us remember people.</span></div><div><b>Veteran</b><span>A person who has served in the Navy, Army or Air Force.</span></div></div>`, n:'Read each word together. Clap the syllables.'},
+      {h:`<div class="sgrid"><div><b>Wreath</b><span>A ring of flowers laid as a sign of respect.</span></div><div><b>Bugle</b><span>A brass instrument that plays the Last Post.</span></div><div><b>Service</b><span>Working for others, or a ceremony to remember.</span></div><div><b>Honour</b><span>To show great respect for someone.</span></div></div>`, n:'Point out that “service” has two meanings.'},
+      {c:'light', h:`<p class="kicker">Find the words</p><div class="words">${WS_WORDS.map(w=>`<span>${w}</span>`).join('')}</div><p style="margin-top:2.5cqw">Words go across, down or diagonally.</p>`, n:'Early finishers write a sentence using three words.'}
+    ]
+  },
+  {
+    id:'q-match', title:'Symbols memory match', years:[1,4], label:'Years 1–4', time:'30 minutes', setup:'Print and cut one set per pair',
+    materials:['Scissors, if students cut their own cards'],
+    tip:'Print on card so the words don’t show through when the cards are face down.',
+    steps:[
+      step('Review the symbols','5 min','Slide 2. Talk about each symbol and what it means.'),
+      step('How to play','5 min','Slide 3. Model one turn with a student.'),
+      step('Play','15 min','Pairs play memory match. Each time they find a pair they read both cards aloud.'),
+      step('Reflect','5 min','Slide 4. Which symbol will you notice at our assembly?')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Symbols memory match</h1>`, n:'Students sit in pairs.'},
+      {h:`<p class="kicker">Symbols of remembering</p><div class="sgrid"><div><b>Poppy</b><span>A red flower worn to remember.</span></div><div><b>Wreath</b><span>A ring of flowers laid at a memorial.</span></div><div><b>The Last Post and Rouse</b><span>Bugle calls before and after the silence.</span></div><div><b>Rosemary</b><span>A herb worn on Anzac Day.</span></div></div>`, n:'The cards also include the minute’s silence, memorials and 11 November.'},
+      {c:'light', h:`<p class="kicker">How to play</p><ol class="steps"><li>Mix the cards and lay them face down.</li><li>Flip two cards.</li><li>A symbol and its meaning? Keep them!</li><li>No match? Turn them back over. Next player.</li></ol>`, n:'Model a turn before pairs start.'},
+      {c:'center', h:`<h2>Which symbol will you look for<br>at our Remembrance Day service?</h2>`, n:'Take a few answers.'}
+    ]
+  },
+  {
+    id:'q-wreath', title:'Wreath of hands', years:[0,3], label:'Pre-primary – Year 3', time:'40 minutes', setup:'5 minutes',
+    materials:['Green paper','A large card ring (a paper plate with the middle cut out works for small groups)','Red paper poppies, or the poppy template','Pencils, scissors and glue'],
+    tip:'Make one class wreath and have two students lay it at the school’s Remembrance Day service.',
+    steps:[
+      step('What is a wreath?','5 min','Slide 2. Explain that wreaths are laid at memorials as a sign of respect.'),
+      step('Trace and cut','15 min','Slide 3. Students trace one hand on green paper and cut it out.'),
+      step('A word to remember','5 min','Slide 4. Students write or draw something on their hand: a word, a name or a picture.'),
+      step('Build the wreath','15 min','Glue the hands around the ring, fingers pointing out, then add poppies.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Our wreath of hands</h1>`, n:'Show a picture of a real wreath if you have one.'},
+      {h:`<h2>A wreath is a ring of leaves and flowers.</h2><p>People lay wreaths at memorials to show respect and to say: we remember.</p><div class="art" style="width:18cqw">${P()}</div>`, n:'Ask: where might you see a wreath?'},
+      {c:'light', h:`<p class="kicker">Make your hand</p><ol class="steps"><li>Put your hand flat on the green paper.</li><li>Trace around it carefully.</li><li>Cut it out.</li></ol>`, n:'Younger children may need help cutting.'},
+      {c:'light', h:`<p class="kicker">A word to remember</p><div class="words"><span>remember</span><span>thank you</span><span>peace</span><span>brave</span><span>kind</span><span>home</span></div><p style="margin-top:2.5cqw">Write or draw on your hand.</p>`, n:'Students may write a family member’s name if they wish.'}
+    ]
+  },
+  {
+    id:'q-interview', title:'Interview a grown-up', years:[3,6], label:'Years 3–6', time:'20 minutes, plus a home task', setup:'Print the interview sheet',
+    materials:['One interview sheet per student'],
+    tip:'Let families know it is optional to share personal stories. Have students who can’t interview someone at home interview a staff member instead.',
+    steps:[
+      step('Why stories matter','5 min','Slide 2. Stories from real people help us understand the past.'),
+      step('Good questions','5 min','Slide 3. Read the questions on the sheet and have students write one of their own.'),
+      step('Being respectful','5 min','Slide 4. Talk about listening and accepting “I’d rather not say”.'),
+      step('Share back','5 min, next lesson','Slide 5. Students share one thing they learned, if they wish.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Interview a grown-up</h1>`, n:'Hand out the interview sheets.'},
+      {h:`<h2>Every family and community has its own way of remembering.</h2><p>Asking questions helps us learn what Remembrance Day means to the people around us.</p>`, n:'Some families have served; some have their own traditions from other countries.'},
+      {h:`<p class="kicker">Good interview questions</p><ol class="steps"><li>Do you do anything to remember on Remembrance Day?</li><li>Do you know anyone who has served?</li><li>What do you think about during the silence?</li><li>Why is it important to remember?</li></ol>`, n:'Students add one question of their own on the sheet.'},
+      {c:'light', h:`<p class="kicker">Being a respectful interviewer</p><ol class="steps"><li>Ask politely and choose a good time.</li><li>Listen carefully and write short notes.</li><li>If they would rather not answer, that’s okay.</li><li>Say thank you.</li></ol>`, n:'Model this with a staff member if you can.'},
+      {c:'center', h:`<h2>What did you learn?</h2><p>Share one thing, if you’d like to.</p>`, n:'Use this slide in the follow-up lesson.'}
+    ]
+  },
+  {
+    id:'q-silence', title:'Practising the silence', years:[0,2], label:'Pre-primary – Year 2', time:'15 minutes', setup:'None',
+    materials:['Nothing extra: the timer is built into slide 4'],
+    tip:'Practise on a few days before 11 November so the minute feels familiar on the day.',
+    steps:[
+      step('Why we are quiet','3 min','Slide 2. At 11 o’clock on Remembrance Day, people everywhere stop and are quiet together.'),
+      step('Still body','3 min','Slide 3. Practise feet still, hands still, eyes down or closed.'),
+      step('Try one minute','5 min','Slide 4. Press the button to start the timer. Try 30 seconds first if needed.'),
+      step('Talk about it','4 min','Slide 5. How did it feel? What did you think about?')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Practising the silence</h1>`, n:'Settle the class on the mat.'},
+      {h:`<h2>At 11 o’clock on Remembrance Day, people everywhere stop and are quiet together.</h2><p>It is a way of saying: we remember you.</p>`, n:'Explain that they will do this with the whole school.'},
+      {c:'light', h:`<p class="kicker">A still body</p><ol class="steps"><li>Feet still on the floor.</li><li>Hands still in your lap or by your sides.</li><li>Eyes looking down, or closed.</li><li>Breathe slowly in and out.</li></ol>`, n:'Practise each part for a few seconds.'},
+      {c:'center', h:`<h2>One minute of quiet</h2><button class="slidebtn" type="button" onclick="startSilence(this,60)">Start 1 minute</button>`, n:'Press the button on the slide to start the countdown.'},
+      {c:'center', h:`<h2>How did it feel?<br>What did you think about?</h2>`, n:'Praise everyone who stayed still.'}
+    ]
+  },
+  {
+    id:'q-writing', title:'Why we remember: reflective writing', years:[5,6], label:'Years 5–6', time:'45 minutes', setup:'Print the writing planner',
+    materials:['One writing planner per student'],
+    tip:'Students who completed “Behind every name” can write about the person they researched.',
+    steps:[
+      step('The question','5 min','Slide 2. Pose the big question and take first thoughts.'),
+      step('Structure','5 min','Slide 3. Walk through the five parts of the planner.'),
+      step('Sentence starters','5 min','Slide 4. Model one opening sentence together.'),
+      step('Plan and write','25 min','Students plan on the sheet, then write a draft.'),
+      step('Share','5 min','Two or three students read their opening line aloud.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Why we remember</h1><p class="kicker">Reflective writing</p>`, n:'Hand out the writing planners.'},
+      {c:'center', h:`<h2>The First World War ended 108 years ago.<br>Why do we still stop and remember?</h2>`, n:'Take first thoughts before planning.'},
+      {c:'light', h:`<p class="kicker">Plan in five parts</p><ol class="steps"><li>Opening: a moment or an image.</li><li>What happened on 11 November 1918.</li><li>Who we remember today.</li><li>Why remembering matters.</li><li>How I will remember.</li></ol>`, n:'Point to each box on the planner.'},
+      {h:`<p class="kicker">Sentence starters</p><div class="words"><span>At eleven o’clock…</span><span>On a memorial in our town…</span><span>Remembering matters because…</span><span>I will remember by…</span><span>Even though it was long ago…</span></div>`, n:'Model one opening sentence on the board.'}
+    ]
+  },
+  {
+    id:'q-colour', title:'Poppy field colouring', years:[0,1], label:'Pre-primary – Year 1', time:'20 minutes', setup:'Print the colouring page',
+    materials:['Red, green and black crayons or pencils'],
+    tip:'A calm activity to follow the minute’s silence practice or the assembly.',
+    steps:[
+      step('Look','5 min','Slide 2. What colours do you see in a poppy field?'),
+      step('Colour','12 min','Students colour the page while you play quiet music.'),
+      step('Share','3 min','Slide 3. Who are you remembering today?')
+    ],
+    slides:[
+      {c:'center', h:`<h1>Poppy field colouring</h1><div style="margin-top:3cqw;width:70cqw">${field}</div>`, n:'Hand out the colouring pages.'},
+      {h:`<h2>What colours will you use?</h2><div class="words"><span>red petals</span><span>black centres</span><span>green stems</span><span>blue sky</span></div>`, n:'Talk about why poppies are red.'},
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h2>Who are you remembering today?</h2>`, n:'Children can say it aloud or keep it in their heads.'}
+    ]
+  }
+);
+
 const qlist = document.getElementById('qlist'), qdetail = document.getElementById('qdetail');
 let qFilter = 'all', qCurrent = null;
 function inFilter(q){ if(qFilter==='all') return true; const [a,b] = qFilter.split('-').map(Number); return q.years[0] <= b && q.years[1] >= a; }
@@ -693,7 +1048,7 @@ function renderQuickDetail(){
     <span class="setup">Set-up: ${q.setup}</span>
     <div class="viewer" data-deck="${q.id}"></div>
     <div class="qcols"><div><h4>What to do</h4><ol class="sequence">${q.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
-    <div class="side"><h4>You will need</h4><ul>${q.materials.map(m=>`<li>${m}</li>`).join('')}</ul><h4>Tip</h4><ul><li>${q.tip}</li></ul></div></div>`;
+    <div class="side"><h4>You will need</h4><ul>${q.materials.map(m=>`<li>${m}</li>`).join('')}${(QSHEETS[q.id]||[]).map(id=>`<li>Printable: <button class="linkbtn" type="button" data-sheet="${id}">${SHEETS[id].title}</button></li>`).join('')}</ul><h4>Tip</h4><ul><li>${q.tip}</li></ul></div></div>`;
   buildViewer(qdetail.querySelector('.viewer'));
 }
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ qFilter=c.dataset.f; document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed', x===c)); renderQuickList(); });

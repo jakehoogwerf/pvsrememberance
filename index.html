@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Remembrance Day 2026 — Teacher Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F3EF; --surface:#FFFFFF; --ink:#1E2621; --muted:#58635B; --line:#D3D8D0;
+  --poppy:#AE2219; --poppy-soft:#F6E3E0; --sage:#5E7360; --brass:#8C6B2E;
+  --stage:#1B231E; --stage-ink:#ECEEE9;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141A16; --surface:#1B231E; --ink:#E7EAE4; --muted:#A3AEA4; --line:#2F3A33;
+    --poppy:#E2483B; --poppy-soft:#3A1D1A; --sage:#9DB39E; --brass:#CDA963; --stage:#0F1411;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141A16; --surface:#1B231E; --ink:#E7EAE4; --muted:#A3AEA4; --line:#2F3A33;
+  --poppy:#E2483B; --poppy-soft:#3A1D1A; --sage:#9DB39E; --brass:#CDA963; --stage:#0F1411;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.125rem;line-height:1.6}
+img,svg{max-width:100%}
+a{color:var(--poppy);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+.prose{max-width:68ch}
+
+/* nav */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:1.25rem;height:56px}
+.brand{font-family:var(--sans);font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:.5rem;white-space:nowrap;color:var(--ink);text-decoration:none}
+.navlinks{display:flex;gap:.25rem;overflow-x:auto;font-family:var(--sans);font-size:.9rem;scrollbar-width:none;margin-left:auto}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{color:var(--muted);text-decoration:none;padding:.4rem .65rem;border-radius:4px;white-space:nowrap}
+.navlinks a:hover{color:var(--ink);background:var(--line)}
+.themebtn{font-family:var(--sans);font-size:.8rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:4px;padding:.3rem .55rem;cursor:pointer}
+@media (max-width:720px){.brand span{display:none}}
+
+/* hero */
+.hero{padding:clamp(3rem,9vw,6.5rem) 0 clamp(2.5rem,6vw,4rem);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.hero h1{font-weight:400;font-size:clamp(2.2rem,6.2vw,4.6rem);line-height:1.04;letter-spacing:-.015em;margin:0 0 1.5rem;max-width:15ch}
+.hero .lede{font-size:1.2rem;color:var(--muted);max-width:52ch;margin:0}
+.hero-poppy{width:clamp(110px,18vw,200px);margin-bottom:.5rem}
+@media (max-width:640px){.hero-grid{grid-template-columns:1fr}.hero-poppy{order:-1;width:84px}}
+.count{margin-top:2.75rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem 1.75rem;font-family:var(--sans)}
+.count .unit{display:flex;align-items:baseline;gap:.4rem}
+.count .n{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);font-variant-numeric:tabular-nums;line-height:1;color:var(--poppy)}
+.count .l{color:var(--muted);font-size:.95rem}
+.count-caption{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin-top:.75rem}
+
+/* sections */
+section{padding:clamp(3rem,7vw,5rem) 0;border-bottom:1px solid var(--line)}
+h2{font-weight:500;font-size:clamp(1.8rem,3.6vw,2.5rem);line-height:1.15;margin:0 0 .75rem;letter-spacing:-.01em}
+h3{font-weight:600;font-size:1.3rem;line-height:1.3;margin:2rem 0 .5rem}
+h4{font-family:var(--sans);font-weight:600;font-size:.95rem;margin:1.5rem 0 .4rem}
+.intro{color:var(--muted);max-width:62ch;margin:0 0 2rem}
+.ui{font-family:var(--sans);font-size:.95rem;line-height:1.5}
+
+/* run sheet */
+.runsheet{display:grid;grid-template-columns:5.5rem 1fr;border-top:1px solid var(--line);max-width:760px}
+.runsheet dt,.runsheet dd{padding:.7rem 0;border-bottom:1px solid var(--line);margin:0}
+.runsheet dt{font-family:var(--sans);font-variant-numeric:tabular-nums;color:var(--poppy);font-weight:600;font-size:.95rem;padding-top:.85rem}
+.runsheet dd strong{font-weight:600}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem;margin-top:2.5rem}
+.checklist{list-style:none;padding:0;margin:0;font-family:var(--sans);font-size:.95rem}
+.checklist li{padding:.5rem 0 .5rem 1.9rem;border-bottom:1px dashed var(--line);position:relative}
+.checklist input{position:absolute;left:0;top:.65rem;width:1.05rem;height:1.05rem;accent-color:var(--poppy)}
+.callout{background:var(--poppy-soft);border-left:3px solid var(--poppy);padding:1rem 1.25rem;border-radius:0 6px 6px 0;font-family:var(--sans);font-size:.95rem}
+.callout p{margin:.3rem 0}
+
+/* viewer */
+.viewer{margin:1.5rem 0 0}
+.stage{position:relative;aspect-ratio:16/9;container-type:inline-size;background:var(--stage);color:var(--stage-ink);border-radius:6px;overflow:hidden;font-family:var(--serif)}
+.slide{position:absolute;inset:0;padding:6cqw 7cqw;display:flex;flex-direction:column;justify-content:center}
+.slide h1{font-weight:400;font-size:6.4cqw;line-height:1.08;margin:0 0 2cqw;letter-spacing:-.01em}
+.slide h2{font-weight:400;font-size:4.6cqw;line-height:1.15;margin:0 0 2cqw}
+.slide p{font-size:2.6cqw;line-height:1.45;margin:0 0 1.4cqw;max-width:62cqw;color:#C9D0C9}
+.slide .kicker{font-family:var(--sans);font-size:1.7cqw;color:#E9A49C;margin-bottom:1.6cqw}
+.slide .big{font-size:9cqw;line-height:1;font-weight:400;margin:0 0 2cqw}
+.slide .ode{font-size:3.1cqw;line-height:1.5;font-style:italic;color:#ECEEE9;max-width:none}
+.slide .resp{font-family:var(--sans);font-size:2cqw;color:#E9A49C;margin-top:2cqw}
+.slide .art{position:absolute;right:6cqw;bottom:6cqw;width:24cqw}
+.slide.center{align-items:center;text-align:center}
+.slide.center p{margin-left:auto;margin-right:auto}
+.slide.light{background:#EEF0EA;color:#1E2621}
+.slide.light p{color:#3F4A42}
+.slide.light .kicker{color:#AE2219}
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.2cqw 4cqw;margin-top:1cqw}
+.sgrid div{border-top:.25cqw solid #E2483B;padding-top:1.2cqw}
+.sgrid b{display:block;font-weight:500;font-size:2.7cqw;margin-bottom:.4cqw}
+.sgrid span{font-size:2.1cqw;color:#C9D0C9;line-height:1.4;display:block}
+.slide.light .sgrid span{color:#3F4A42}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:4cqw}
+.vs h3{font-size:3.2cqw;margin:0 0 1cqw;font-weight:500}
+.vs ul{margin:0;padding-left:2.4cqw;font-size:2.2cqw;line-height:1.55;color:#C9D0C9}
+.steps{margin:0;padding-left:3cqw;font-size:2.4cqw;line-height:1.55;color:#C9D0C9}
+.steps li{margin-bottom:.8cqw;padding-left:.8cqw}
+.slide.light .steps{color:#3F4A42}
+.controls{display:flex;align-items:center;gap:.5rem;margin-top:.75rem;font-family:var(--sans);font-size:.9rem;flex-wrap:wrap}
+.btn{font-family:var(--sans);font-size:.9rem;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:4px;padding:.45rem .85rem;cursor:pointer;min-height:38px}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--poppy);border-color:var(--poppy);color:#fff}
+.btn:disabled{opacity:.4;cursor:default}
+.counter{color:var(--muted);font-variant-numeric:tabular-nums;min-width:4.5em;text-align:center}
+.dots{display:flex;gap:4px;margin-left:auto}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--poppy)}
+.notes{margin-top:.75rem;font-family:var(--sans);font-size:.92rem;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.85rem 1rem;color:var(--muted)}
+.notes b{color:var(--ink);font-weight:600}
+.viewer.presenting{position:fixed;inset:0;z-index:100;background:#000;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+.viewer.presenting .stage{width:min(100vw,calc((100vh - 70px) * 16 / 9));border-radius:0}
+.viewer.presenting .controls{width:min(100vw,calc((100vh - 70px) * 16 / 9));padding:0 .75rem}
+.viewer.presenting .notes,.viewer.presenting .dots{display:none}
+.viewer.presenting .btn{background:#222;border-color:#444;color:#eee}
+.viewer.presenting .counter{color:#aaa}
+
+/* tabs */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tab{font-family:var(--sans);font-size:.95rem;font-weight:500;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:.8rem 1.1rem;cursor:pointer;white-space:nowrap;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--poppy)}
+.tab small{display:block;font-weight:400;font-size:.8rem}
+.lesson-head{display:flex;flex-wrap:wrap;gap:.5rem 2rem;align-items:baseline;margin:2rem 0 0}
+.lesson-head h3{margin:0;font-size:1.65rem;font-weight:500}
+.meta{font-family:var(--sans);font-size:.9rem;color:var(--muted)}
+.plan{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:3rem;margin-top:2.25rem}
+@media (max-width:860px){.plan{grid-template-columns:1fr;gap:1rem}}
+.sequence{list-style:none;padding:0;margin:0;counter-reset:s}
+.sequence li{counter-increment:s;position:relative;padding:0 0 1.25rem 3rem}
+.sequence li::before{content:counter(s);position:absolute;left:0;top:.1rem;width:2rem;height:2rem;border-radius:50%;border:1.5px solid var(--poppy);color:var(--poppy);font-family:var(--sans);font-size:.9rem;font-weight:600;display:grid;place-items:center}
+.sequence li b{font-weight:600}
+.sequence .t{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-left:.35rem}
+.side h4:first-child{margin-top:0}
+.side ul{padding-left:1.1rem;margin:.25rem 0;font-family:var(--sans);font-size:.92rem}
+.side li{margin-bottom:.3rem}
+.printrow{margin-top:1.5rem}
+
+/* briefing */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 3rem}
+.fact{padding:1.25rem 0;border-top:1px solid var(--line)}
+.fact h3{margin:0 0 .35rem;font-size:1.15rem}
+.fact p{margin:0;font-size:1.02rem}
+blockquote.ode{margin:1rem 0 0;padding:1.25rem 1.5rem;border-left:3px solid var(--brass);font-style:italic;font-size:1.2rem;line-height:1.65;background:var(--surface);border-radius:0 6px 6px 0}
+
+/* activities */
+.acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem 3rem}
+.act h3{margin:0 0 .3rem;font-size:1.15rem}
+.act .meta{margin-bottom:.4rem}
+.act p{margin:0;font-size:1.02rem}
+
+/* links */
+.linkgroup{margin-top:2.25rem}
+.linkgroup h3{margin:0 0 .25rem}
+.linkgroup > p{margin:0 0 .75rem;color:var(--muted);font-size:1rem}
+.links{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.links li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.25rem 1.5rem;padding:.9rem 0;border-bottom:1px solid var(--line);align-items:baseline}
+.links a{font-weight:500;font-size:1.08rem}
+.links p{grid-column:1/-1;margin:0;font-size:.98rem;color:var(--muted)}
+.tag{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:3px;white-space:nowrap}
+.tag.kids{background:var(--poppy-soft);color:var(--poppy)}
+.tag.teach{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
+footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--muted)}
+
+/* lock */
+.lock{max-width:440px;margin-top:.5rem}
+.lockrow{display:flex;gap:.5rem;margin-top:.4rem}
+.lockrow input{flex:1;min-width:0;font-family:var(--sans);font-size:1rem;padding:.5rem .75rem;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);min-height:40px}
+.lockmsg{color:var(--poppy);min-height:1.5em;margin:.5rem 0 0}
+
+/* quick lessons */
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.chip{font-family:var(--sans);font-size:.88rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:.4rem .95rem;cursor:pointer;min-height:36px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.qgrid{display:grid;grid-template-columns:290px minmax(0,1fr);gap:2.5rem;align-items:start}
+@media (max-width:860px){.qgrid{grid-template-columns:1fr;gap:1.5rem}}
+.qlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.qitem{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);border-left:3px solid transparent;padding:.85rem .75rem .85rem 1rem;cursor:pointer;color:var(--ink);font-family:var(--serif)}
+.qitem:hover{background:var(--surface)}
+.qitem[aria-current="true"]{border-left-color:var(--poppy);background:var(--surface)}
+.qitem b{display:block;font-weight:500;font-size:1.08rem;line-height:1.3}
+.qitem span{display:block;font-family:var(--sans);font-size:.82rem;color:var(--muted);margin-top:.15rem}
+.qdetail .lesson-head{margin-top:0}
+.setup{display:inline-block;font-family:var(--sans);font-size:.82rem;font-weight:600;color:var(--sage);background:color-mix(in srgb,var(--sage) 16%,transparent);padding:.2rem .6rem;border-radius:3px;margin-top:.6rem}
+.qcols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:2rem;margin-top:1.75rem}
+@media (max-width:700px){.qcols{grid-template-columns:1fr;gap:.5rem}}
+.prow{display:flex;gap:1.6cqw;align-items:center;flex-wrap:wrap;margin-top:2cqw}
+.tenframe{display:grid;grid-template-columns:repeat(5,8cqw);gap:.6cqw;margin-top:2cqw}
+.tenframe div{aspect-ratio:1;border:.25cqw solid #5E7360;border-radius:.6cqw;display:grid;place-items:center;padding:.8cqw}
+.grp{border:.3cqw dashed #5E7360;border-radius:3cqw;padding:1.4cqw 2cqw;display:flex;gap:1cqw}
+.qmark{width:9cqw;aspect-ratio:1;border:.3cqw dashed #E9A49C;border-radius:1cqw;display:grid;place-items:center;font-size:5cqw;color:#E9A49C}
+.tl{display:grid;grid-template-columns:repeat(2,1fr);gap:1cqw 4cqw;margin-top:1cqw}
+.tl div{font-size:2.05cqw;line-height:1.35;color:#C9D0C9;border-left:.3cqw solid #E2483B;padding-left:1.4cqw}
+.tl b{color:#ECEEE9;font-weight:500;margin-right:.8cqw}
+.acro{font-size:2.8cqw;line-height:1.5;margin:0;color:#ECEEE9}
+.acro b{color:#E2483B;font-weight:600;display:inline-block;width:3.2cqw}
+.words{display:flex;flex-wrap:wrap;gap:1.2cqw;margin-top:2cqw;max-width:80cqw}
+.words span{font-family:var(--sans);font-size:2.1cqw;border:.2cqw solid #5E7360;border-radius:5cqw;padding:.6cqw 1.8cqw;color:#ECEEE9}
+.slide.light .words span{color:#1E2621}
+
+@media print{
+  .topbar,.hero,.viewer,.controls,.printrow,#assembly,#quick,#briefing,#activities,#links,footer,.tabs,.themebtn{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  section{border:0;padding:0}
+  .panel[hidden]{display:none!important}
+  .plan{grid-template-columns:1.5fr 1fr;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true"><use href="#poppy"/></svg><span>Remembrance Day 2026</span></a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#assembly">Assembly (staff)</a>
+      <a href="#lessons">Lesson plans</a>
+      <a href="#quick">Quick lessons</a>
+      <a href="#briefing">Teacher briefing</a>
+      <a href="#activities">Activities</a>
+      <a href="#links">Websites</a>
+    </nav>
+    <button class="themebtn" id="themeBtn" type="button" aria-label="Switch light or dark theme">Theme</button>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="poppy" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="29" rx="23" ry="21" fill="#C2271D"/>
+      <ellipse cx="71" cy="50" rx="21" ry="23" fill="#B3221A"/>
+      <ellipse cx="50" cy="71" rx="23" ry="21" fill="#C2271D"/>
+      <ellipse cx="29" cy="50" rx="21" ry="23" fill="#A91F18"/>
+      <circle cx="50" cy="50" r="13" fill="#1A1A1A"/>
+      <g fill="#3A3A3A"><circle cx="45" cy="46" r="2"/><circle cx="55" cy="46" r="2"/><circle cx="50" cy="55" r="2"/><circle cx="44" cy="54" r="1.6"/><circle cx="56" cy="54" r="1.6"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>At the eleventh hour of the eleventh day of the eleventh month</h1>
+          <p class="lede">Everything you need to teach and mark Remembrance Day at our school: the assembly slideshow, lesson plans with slides for every year group, background notes and safe websites for students.</p>
+        </div>
+        <svg class="hero-poppy" viewBox="0 0 100 100" role="img" aria-label="Red poppy"><use href="#poppy"/></svg>
+      </div>
+      <div class="count" id="count" aria-live="polite"></div>
+      <p class="count-caption">Until the minute's silence, 11:00am Wednesday 11 November 2026 (Perth time).</p>
+    </div>
+  </div>
+
+  <!-- ASSEMBLY (staff only, encrypted) -->
+  <section id="assembly">
+    <div class="wrap">
+      <div id="assembly-lock">
+        <h2>The assembly and minute's silence</h2>
+        <p class="intro">The assembly slideshow, run sheet and checklist are for staff. Enter the staff password to open them.</p>
+        <form id="lockForm" class="lock" autocomplete="off">
+          <label for="pw" class="ui">Staff password</label>
+          <div class="lockrow"><input id="pw" type="password" required><button class="btn primary" type="submit" id="unlockBtn">Unlock</button></div>
+          <p id="lockMsg" class="ui lockmsg" role="alert"></p>
+        </form>
+      </div>
+      <div id="assembly-content" hidden></div>
+    </div>
+  </section>
+
+  <!-- LESSONS -->
+  <section id="lessons">
+    <div class="wrap">
+      <h2>Lesson plans</h2>
+      <p class="intro">One complete lesson for each phase, with slides built in. Each can be taught in the week before 11 November and leads naturally into the assembly. Use <b>Print plan</b> for a paper copy.</p>
+
+      <div class="tabs" role="tablist" aria-label="Year groups">
+        <button class="tab" role="tab" id="t-junior" aria-controls="p-junior" aria-selected="true">Pre-primary – Year 2<small>Why do we wear a poppy?</small></button>
+        <button class="tab" role="tab" id="t-middle" aria-controls="p-middle" aria-selected="false" tabindex="-1">Years 3 – 4<small>How do Australians remember?</small></button>
+        <button class="tab" role="tab" id="t-upper" aria-controls="p-upper" aria-selected="false" tabindex="-1">Years 5 – 6<small>Behind every name</small></button>
+      </div>
+
+      <!-- junior -->
+      <div class="panel" role="tabpanel" id="p-junior" aria-labelledby="t-junior">
+        <div class="lesson-head">
+          <h3>Why do we wear a red poppy?</h3>
+          <span class="meta">Pre-primary to Year 2 · about 45 minutes</span>
+        </div>
+        <div class="viewer" data-deck="junior"></div>
+        <div class="plan">
+          <div>
+            <h4>Learning intention</h4>
+            <p>I can explain that Remembrance Day is a day to remember people who served in wars, and that the red poppy helps us remember.</p>
+            <h4>Lesson sequence</h4>
+            <ol class="sequence">
+              <li><b>Tune in</b><span class="t">5 min</span><br>Show a real or paper poppy (slide 2). Ask: What do you notice? Have you seen one before? Where?</li>
+              <li><b>The story</b><span class="t">10 min</span><br>Read slides 3–7 together. Keep the language gentle: soldiers went far away, many did not come home, and the people at home missed them. Pause on slide 6 and show 11 on a real clock.</li>
+              <li><b>Practise quiet thinking time</b><span class="t">3 min</span><br>Slide 8. Explain that on Wednesday the whole school will be quiet for one minute. Practise for 30 seconds, then a full minute. Ask what they thought about.</li>
+              <li><b>Make a poppy</b><span class="t">20 min</span><br>Slide 9. Children make a poppy to wear or to add to a class poppy wall or wreath for the assembly.</li>
+              <li><b>Share</b><span class="t">5 min</span><br>In a circle, children finish the sentence: “I wear my poppy to remember…”</li>
+            </ol>
+          </div>
+          <div class="side">
+            <h4>Success criteria</h4>
+            <ul><li>I can name the red poppy.</li><li>I can say one reason people wear it.</li><li>I can stay quiet and still for one minute.</li></ul>
+            <h4>You will need</h4>
+            <ul><li>Red paper or paper plates, black pom-poms or buttons, green pipe cleaners, glue, safety pins or tape</li><li>A clock with hands</li></ul>
+            <h4>Adjusting the lesson</h4>
+            <ul><li>Pre-primary: pre-cut petals and focus on the poppy and quiet time.</li><li>Year 2: add a simple caption to the poppy: “We remember.”</li></ul>
+            <h4>Curriculum links</h4>
+            <ul><li>HASS: personal, family and community commemorations</li><li>The Arts: visual arts making</li><li>Check against your WA Curriculum scope and sequence.</li></ul>
+          </div>
+        </div>
+        <div class="printrow"><button class="btn" type="button" onclick="window.print()">Print plan</button></div>
+      </div>
+
+      <!-- middle -->
+      <div class="panel" role="tabpanel" id="p-middle" aria-labelledby="t-middle" hidden>
+        <div class="lesson-head">
+          <h3>How do Australians remember?</h3>
+          <span class="meta">Years 3 and 4 · about 60 minutes</span>
+        </div>
+        <div class="viewer" data-deck="middle"></div>
+        <div class="plan">
+          <div>
+            <h4>Learning intention</h4>
+            <p>I can explain why Remembrance Day is held on 11 November, and describe the symbols and traditions Australians use to remember.</p>
+            <h4>Lesson sequence</h4>
+            <ol class="sequence">
+              <li><b>Hook</b><span class="t">5 min</span><br>Write “11 / 11 / 11” on the board. What could it mean? Collect guesses before slide 3 reveals it.</li>
+              <li><b>Origins</b><span class="t">10 min</span><br>Slides 2–4: the armistice, why 11am, and how Armistice Day became Remembrance Day after the Second World War. Add “armistice” and “commemorate” to the word wall.</li>
+              <li><b>Symbols</b><span class="t">10 min</span><br>Slide 5. Discuss each symbol. Play 20 seconds of the Last Post and ask how it makes students feel.</li>
+              <li><b>Compare</b><span class="t">10 min</span><br>Slide 6. In pairs, students complete a Venn diagram comparing Remembrance Day and Anzac Day.</li>
+              <li><b>Memorials</b><span class="t">5 min</span><br>Slide 7. Is there a memorial near the school? Show it on a map if you can.</li>
+              <li><b>Symbol detective</b><span class="t">15 min</span><br>Slide 8. Students choose a symbol, draw it, and write what it is, what it means and how people use it on Remembrance Day. Display them near the assembly area.</li>
+              <li><b>Reflect</b><span class="t">5 min</span><br>Which symbol do you think is the most powerful? Why?</li>
+            </ol>
+          </div>
+          <div class="side">
+            <h4>Success criteria</h4>
+            <ul><li>I can explain what happened at 11am on 11 November 1918.</li><li>I can describe at least two symbols of remembrance.</li><li>I can tell one difference between Remembrance Day and Anzac Day.</li></ul>
+            <h4>You will need</h4>
+            <ul><li>A recording of the Last Post</li><li>Venn diagram sheets</li><li>Drawing paper and pencils</li></ul>
+            <h4>Adjusting the lesson</h4>
+            <ul><li>Support: give sentence starters (“The ___ means…”).</li><li>Extend: research the State War Memorial in Kings Park and write three facts.</li></ul>
+            <h4>Curriculum links</h4>
+            <ul><li>HASS History (Year 3): days and weeks celebrated or commemorated in Australia</li><li>English: vocabulary and explanatory writing</li><li>Check against your WA Curriculum scope and sequence.</li></ul>
+          </div>
+        </div>
+        <div class="printrow"><button class="btn" type="button" onclick="window.print()">Print plan</button></div>
+      </div>
+
+      <!-- upper -->
+      <div class="panel" role="tabpanel" id="p-upper" aria-labelledby="t-upper" hidden>
+        <div class="lesson-head">
+          <h3>Behind every name</h3>
+          <span class="meta">Years 5 and 6 · 60 to 75 minutes</span>
+        </div>
+        <div class="viewer" data-deck="upper"></div>
+        <div class="plan">
+          <div>
+            <h4>Learning intention</h4>
+            <p>I can use sources to learn about a real person who served, and explain why remembering individuals matters.</p>
+            <h4>Lesson sequence</h4>
+            <ol class="sequence">
+              <li><b>Numbers</b><span class="t">10 min</span><br>Slides 2–3. Put the numbers in context: if 1 in 3 WA men aged 18–41 served, what would that look like in our street or school? Discuss how numbers can hide people.</li>
+              <li><b>Place</b><span class="t">10 min</span><br>Slide 4. Kings Park's State War Memorial and the Honour Avenues, where individual plaques line the roads. If possible, show photos of a local honour board.</li>
+              <li><b>Who served</b><span class="t">5 min</span><br>Slide 5. Acknowledge the service of Aboriginal and Torres Strait Islander people, nurses and Australians from many backgrounds.</li>
+              <li><b>Research a name</b><span class="t">25 min</span><br>Slide 6. In pairs, students choose a name from a local memorial, an honour board or a list you prepare, then search the Australian War Memorial's Roll of Honour. Model one search first.</li>
+              <li><b>Remembrance card</b><span class="t">15 min</span><br>Slide 7. Each pair creates a card with the person's name, where they came from, one fact and a sentence of reflection. Cards can be placed on a display or carried by class representatives at the assembly.</li>
+              <li><b>Reflect</b><span class="t">5 min</span><br>Slide 8. Why might it matter to remember one person, not only a number?</li>
+            </ol>
+          </div>
+          <div class="side">
+            <h4>Success criteria</h4>
+            <ul><li>I can find and record details from a historical source.</li><li>I can describe one person's story respectfully.</li><li>I can explain why commemoration matters.</li></ul>
+            <h4>You will need</h4>
+            <ul><li>Devices with internet access</li><li>A pre-checked list of names (recommended)</li><li>Card stock for remembrance cards</li></ul>
+            <h4>Teacher tip</h4>
+            <ul><li>Check each name first: some records include details of injury or death that may need sensitive handling.</li><li>Some students may want to research a family member; welcome this but don't require it.</li></ul>
+            <h4>Curriculum links</h4>
+            <ul><li>HASS: questioning, researching and using sources</li><li>English: reflective writing</li><li>Check against your WA Curriculum scope and sequence.</li></ul>
+          </div>
+        </div>
+        <div class="printrow"><button class="btn" type="button" onclick="window.print()">Print plan</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK LESSONS -->
+  <section id="quick">
+    <div class="wrap">
+      <h2>Quick lessons</h2>
+      <p class="intro">Short, low-prep lessons that need little more than paper and pencils. Each comes with its own slides, and the set-up time is shown so you can pick one for a spare half hour.</p>
+      <div class="chips" role="group" aria-label="Filter by year group">
+        <button class="chip" type="button" aria-pressed="true" data-f="all">All</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="0-2">Pre-primary – Year 2</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="3-4">Years 3 – 4</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="5-6">Years 5 – 6</button>
+      </div>
+      <div class="qgrid">
+        <ul class="qlist" id="qlist"></ul>
+        <div class="qdetail" id="qdetail"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIEFING -->
+  <section id="briefing">
+    <div class="wrap">
+      <h2>Teacher briefing</h2>
+      <p class="intro">Background you can read in five minutes before teaching, so you're ready for students' questions.</p>
+
+      <div class="facts">
+        <div class="fact"><h3>What we mark</h3><p>Remembrance Day marks the anniversary of the armistice that ended the fighting of the First World War at 11am on 11 November 1918. After the Second World War it was renamed to remember people who died or suffered in all wars, conflicts and peacekeeping operations. 2026 is the 108th anniversary.</p></div>
+        <div class="fact"><h3>The red poppy</h3><p>Poppies were among the first plants to flower in the churned-up battlefields of France and Belgium. The poem “In Flanders Fields” (1915) made them a symbol of remembrance, and the RSL first sold poppies in Australia in 1921.</p></div>
+        <div class="fact"><h3>The minute's silence</h3><p>A period of silence at 11am has been observed since 1919. In 1997 the Governor-General proclaimed that Australians observe one minute's silence at 11am on 11 November each year.</p></div>
+        <div class="fact"><h3>Last Post and Rouse</h3><p>The Last Post was the bugle call that signalled the end of a soldier's day; at services it acts as a farewell. The Rouse that follows calls soldiers back to their duty, and symbolises the living carrying on.</p></div>
+        <div class="fact"><h3>Australia and the First World War</h3><p>From a population of fewer than five million, about 416,000 Australians enlisted and more than 60,000 died. More than a third of Western Australian men aged 18 to 41 served, and about half of them were killed or wounded.</p></div>
+        <div class="fact"><h3>Here in Perth</h3><p>The State War Memorial in Kings Park was unveiled in 1929 and lists more than 7,000 Western Australians who died in the First World War. RSL WA holds the state service there each year, with a display of knitted poppies around the Flame of Remembrance.</p></div>
+        <div class="fact"><h3>Remembrance Day or Anzac Day?</h3><p>Anzac Day (25 April) marks the Gallipoli landing in 1915 and is linked with dawn services and rosemary. Remembrance Day (11 November) marks the end of the fighting in 1918 and is linked with the poppy and the 11am silence.</p></div>
+        <div class="fact"><h3>The Unknown Australian Soldier</h3><p>On 11 November 1993, the remains of an unidentified Australian soldier from the Western Front were placed in the Hall of Memory at the Australian War Memorial, representing all Australians who died in war.</p></div>
+      </div>
+
+      <h3>The Ode</h3>
+      <p class="prose">The fourth verse of Laurence Binyon's “For the Fallen” (1914). The reader says the verse; everyone responds with the last line.</p>
+      <blockquote class="ode">They shall grow not old, as we that are left grow old:<br>Age shall not weary them, nor the years condemn.<br>At the going down of the sun and in the morning<br>We will remember them.<br><br><span style="font-style:normal;font-family:var(--sans);font-size:1rem">All: We will remember them. Lest we forget.</span></blockquote>
+
+      <h3>Teaching the topic sensitively</h3>
+      <div class="callout prose">
+        <p>Some students have parents or relatives in the Australian Defence Force, or veterans in the family. Others may have lived through war themselves or have families who fled conflict.</p>
+        <p>Focus on remembering, peace and gratitude rather than battles. Preview any images or videos before showing them, avoid graphic content, and let students sit out a discussion if they need to. Follow your school's pastoral care process if a student is upset.</p>
+        <p>Veterans and their families can contact Open Arms, a free 24-hour counselling service, on 1800 011 046.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section id="activities">
+    <div class="wrap">
+      <h2>More activity ideas</h2>
+      <p class="intro">Short activities to fill the week or to extend the lessons above.</p>
+      <div class="acts">
+        <div class="act"><h3>Whole-school poppy wall</h3><p class="meta">All year groups</p><p>Every student adds a paper poppy to one shared wall or a large wreath shape near the assembly area. Older students can add the name of someone they remember.</p></div>
+        <div class="act"><h3>Knitted or crocheted poppies</h3><p class="meta">Years 3–6, families</p><p>Invite grandparents or a craft club to teach students to make poppies, in the spirit of RSL WA's knitted poppy display at Kings Park.</p></div>
+        <div class="act"><h3>Acrostic poems</h3><p class="meta">Years 2–6</p><p>Students write an acrostic using REMEMBER, POPPY or PEACE. Display them along the walkway to the assembly.</p></div>
+        <div class="act"><h3>Letters of thanks</h3><p class="meta">Years 1–6</p><p>Students write or draw thank-you cards for your local RSL sub-branch or for serving Defence members. Check with the sub-branch first.</p></div>
+        <div class="act"><h3>Visit a local memorial</h3><p class="meta">Years 3–6</p><p>A walk to a nearby memorial or honour board to read names and lay poppies. Follow your school's excursion approval process.</p></div>
+        <div class="act"><h3>Watch the national ceremony</h3><p class="meta">Years 5–6</p><p>The ceremony at the Australian War Memorial in Canberra is broadcast by the ABC and can be watched later on ABC iview. Remember the time difference with Canberra.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS -->
+  <section id="links">
+    <div class="wrap">
+      <h2>Websites</h2>
+      <p class="intro">Trusted Australian sources. Pages marked <span class="tag kids">With students</span> are suitable to explore together in class; please preview any page before showing it, as content can change.</p>
+
+      <div class="linkgroup">
+        <h3>For students, with a teacher</h3>
+        <p>Age-appropriate places to read, watch and explore together.</p>
+        <ul class="links">
+          <li><a href="https://anzacportal.dva.gov.au/resources/poppies-here-they-come-day-remember" target="_blank" rel="noopener">Poppies: Here they come — A day to remember</a><span class="tag kids">With students</span><p>Department of Veterans' Affairs story resource on the meaning of the poppy, written for primary students.</p></li>
+          <li><a href="https://anzacportal.dva.gov.au/taxonomy/term/1745" target="_blank" rel="noopener">Anzac Portal primary teaching presentations</a><span class="tag kids">With students</span><p>Ready-made class presentations, including one that explains the difference between celebrating and commemorating for lower primary.</p></li>
+          <li><a href="https://www.awm.gov.au/commemoration/remembrance-day" target="_blank" rel="noopener">Australian War Memorial: Remembrance Day</a><span class="tag kids">With students</span><p>The national memorial's page about the day and its national ceremony.</p></li>
+          <li><a href="https://www.abc.net.au/btn" target="_blank" rel="noopener">BTN (Behind the News)</a><span class="tag kids">With students</span><p>The ABC's news program for children. Search “Remembrance Day” for short explainer stories.</p></li>
+          <li><a href="https://www.abc.net.au/education" target="_blank" rel="noopener">ABC Education</a><span class="tag kids">With students</span><p>Free videos and classroom resources. Search “Remembrance Day” or “Anzac”.</p></li>
+        </ul>
+      </div>
+
+      <div class="linkgroup">
+        <h3>For teachers</h3>
+        <p>Planning resources, background and curriculum-linked materials.</p>
+        <ul class="links">
+          <li><a href="https://www.awm.gov.au/learn/schools/resources/commemoration" target="_blank" rel="noopener">AWM Commemoration hub for schools</a><span class="tag teach">Teachers</span><p>Background, discussion questions and activities for all year levels, including crafts and a Street View tour of the Memorial's Commemorative Area.</p></li>
+          <li><a href="https://anzacportal.dva.gov.au/classroom/teaching/commemoration" target="_blank" rel="noopener">DVA Anzac Portal: teaching commemoration</a><span class="tag teach">Teachers</span><p>Free classroom resources on days of commemoration and their symbols, plus guides for planning a school service.</p></li>
+          <li><a href="https://www.awm.gov.au/learn/memorial-boxes/upper-primary" target="_blank" rel="noopener">AWM Memorial Boxes: upper primary</a><span class="tag teach">Teachers</span><p>Source-based learning kits from the Memorial, with curriculum links for senior primary.</p></li>
+          <li><a href="https://www.awm.gov.au" target="_blank" rel="noopener">Australian War Memorial Roll of Honour</a><span class="tag teach">Teachers</span><p>Search the Roll of Honour from the Memorial's website for the Years 5–6 lesson. Model a search before students try.</p></li>
+        </ul>
+      </div>
+
+      <div class="linkgroup">
+        <h3>In Western Australia</h3>
+        <p>Local services and places for families and excursions.</p>
+        <ul class="links">
+          <li><a href="https://www.rslwa.org.au/events-calendar/remembrance-day-2026-nxsd4-y41yo" target="_blank" rel="noopener">RSL WA: Remembrance Day 2026 service</a><span class="tag teach">Teachers</span><p>The state service at the State War Memorial, Kings Park, from 10:30am on 11 November.</p></li>
+          <li><a href="https://bgpa.wa.gov.au/kings-park/events/remembrance-day-service" target="_blank" rel="noopener">Kings Park: Remembrance Day service</a><span class="tag teach">Teachers</span><p>Visitor information, including parking changes on the day and the knitted poppy display.</p></li>
+          <li><a href="https://www.openarms.gov.au" target="_blank" rel="noopener">Open Arms — Veterans &amp; Families Counselling</a><span class="tag teach">Support</span><p>Free, confidential support for veterans and their families, 24 hours a day on 1800 011 046.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Prepared for staff by the Remembrance Day coordinator. Lest we forget.</p>
+  </div>
+</footer>
+
+<script>
+const P = (s='100%') => `<svg viewBox="0 0 100 100" style="width:${s};height:auto;display:block" aria-hidden="true"><use href="#poppy"/></svg>`;
+const LEAF = (s='9cqw') => `<svg viewBox="0 0 100 100" style="width:${s};height:auto;display:block" aria-hidden="true"><path d="M50 92 C14 62 18 24 50 8 C82 24 86 62 50 92Z" fill="#5E7360"/><path d="M50 88 V20" stroke="#2E3B30" stroke-width="3"/></svg>`;
+const clock = `<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#ECEEE9" stroke-width="4"/>${Array.from({length:12},(_,i)=>{const a=i*30*Math.PI/180;return `<line x1="${60+44*Math.sin(a)}" y1="${60-44*Math.cos(a)}" x2="${60+50*Math.sin(a)}" y2="${60-50*Math.cos(a)}" stroke="#ECEEE9" stroke-width="3"/>`}).join('')}<line x1="60" y1="60" x2="${60+28*Math.sin(-30*Math.PI/180)}" y2="${60-28*Math.cos(-30*Math.PI/180)}" stroke="#E2483B" stroke-width="6" stroke-linecap="round"/><line x1="60" y1="60" x2="60" y2="16" stroke="#ECEEE9" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="60" r="4" fill="#ECEEE9"/></svg>`;
+const field = (()=>{let s='<svg viewBox="0 0 400 120" aria-hidden="true"><path d="M0 70 Q100 50 200 68 T400 60 V120 H0Z" fill="#2E3B30"/>';const pts=[[30,78,14],[80,90,18],[130,72,12],[170,98,20],[220,80,14],[265,95,17],[310,75,13],[350,92,19],[385,80,12],[55,105,13],[200,108,12],[290,110,14]];pts.forEach(([x,y,r])=>{s+=`<line x1="${x}" y1="${y}" x2="${x+2}" y2="120" stroke="#5E7360" stroke-width="2"/><use href="#poppy" x="${x-r}" y="${y-r}" width="${r*2}" height="${r*2}"/>`});return s+'</svg>'})();
+
+const decks = {
+  junior:[
+    {c:'center',h:`<div style="width:12cqw;margin-bottom:2cqw">${P()}</div><h1>Why do we wear a red poppy?</h1><p class="kicker">Remembrance Day · Pre-primary to Year 2</p>`,n:'Introduce the lesson: today we learn about a special day called Remembrance Day.'},
+    {h:`<h1>What is this flower?</h1><p>It is called a poppy.</p><p>Turn and tell a partner: where have you seen one?</p><div class="art">${P()}</div>`,n:'Pass around a real or paper poppy if you have one. Collect a few answers.'},
+    {h:`<h2>A long time ago, there was a very big war.</h2><p>It was called the First World War. Lots of Australians went far across the sea to help.</p><svg class="art" viewBox="0 0 200 80" aria-hidden="true"><path d="M0 50 Q25 40 50 50 T100 50 T150 50 T200 50" fill="none" stroke="#5E7360" stroke-width="4"/><path d="M0 64 Q25 54 50 64 T100 64 T150 64 T200 64" fill="none" stroke="#5E7360" stroke-width="4"/><path d="M70 40 H130 L120 50 H80Z" fill="#ECEEE9"/><rect x="96" y="22" width="5" height="18" fill="#ECEEE9"/></svg>`,n:'Keep it simple. Point out that Australia is a long way from where the fighting was.'},
+    {h:`<h2>Many soldiers did not come home.</h2><p>Their families and friends missed them very much.</p>`,n:'Pause here. Some children may share stories about family. Be gentle and acknowledge feelings.'},
+    {h:`<h2>Red poppies grew in the fields where the soldiers had been.</h2><div style="margin-top:3cqw">${field}</div>`,n:'Poppies grew in the fields of France and Belgium after the fighting. People began to see them as a sign of remembering.'},
+    {h:`<h2>The war stopped at 11 o'clock</h2><p>on the 11th day of the 11th month: 11 November.</p><div class="art" style="width:20cqw">${clock}</div>`,n:'Show 11 o\'clock on a real clock. Count to 11 together on fingers.'},
+    {c:'center',h:`<div style="width:11cqw;margin-bottom:2cqw">${P()}</div><h2>We wear a poppy to say:<br>we remember you, and thank you.</h2>`,n:'Ask: who do we remember on Remembrance Day?'},
+    {c:'center',h:`<h1>Quiet thinking time</h1><p>We stay still and quiet for one minute.<br>We think about people who helped keep us safe.</p>`,n:'Practise 30 seconds, then a full minute. Explain the whole school will do this on Wednesday at 11 o\'clock.'},
+    {c:'light',h:`<p class="kicker">Let's make a poppy</p><ol class="steps"><li>Cut out red petals or a red circle.</li><li>Glue a black circle in the middle.</li><li>Add a green stem.</li><li>Wear it or add it to our class poppy wall.</li></ol><div class="art" style="width:18cqw">${P()}</div>`,n:'Have materials ready on tables. Pre-cut petals for younger children.'}
+  ],
+  middle:[
+    {c:'center',h:`<div style="width:11cqw;margin-bottom:2cqw">${P()}</div><h1>How do Australians remember?</h1><p class="kicker">Remembrance Day · Years 3 and 4</p>`,n:'Before showing slide 2, run the “11/11/11” hook on the board.'},
+    {h:`<p class="kicker">Armistice: 11 November 1918</p><h2>An armistice is an agreement to stop fighting.</h2><p>The fighting of the First World War stopped at 11 o'clock that morning, after more than four years.</p>`,n:'Add “armistice” to the word wall.'},
+    {c:'center',h:`<p class="kicker">Why 11?</p><p class="big">11 · 11 · 11</p><p>The 11th hour of the 11th day of the 11th month.</p>`,n:'Reveal the answer to the hook. Check student guesses.'},
+    {h:`<p class="kicker">From Armistice Day to Remembrance Day</p><h2>After the Second World War, the day was given a new name.</h2><p>Now it remembers everyone who died or suffered in all wars, conflicts and peacekeeping missions.</p>`,n:'Peacekeeping: helping to keep peace in other countries. Add “commemorate” to the word wall.'},
+    {h:`<p class="kicker">Symbols of remembering</p><div class="sgrid"><div><b>Red poppy</b><span>Grew in the battlefields of France and Belgium. Worn to remember.</span></div><div><b>Wreath</b><span>A circle of flowers or poppies laid at a memorial as a sign of respect.</span></div><div><b>The Last Post</b><span>A bugle call that ended a soldier's day. Now a farewell.</span></div><div><b>One minute's silence</b><span>At 11am, people stop and stand quietly to remember.</span></div></div>`,n:'Play 20 seconds of the Last Post. Ask how it makes students feel and why it might be used.'},
+    {h:`<p class="kicker">Remembrance Day or Anzac Day?</p><div class="vs"><div><h3>Remembrance Day</h3><ul><li>11 November</li><li>Marks the end of the fighting in 1918</li><li>Red poppy</li><li>Silence at 11am</li></ul></div><div><h3>Anzac Day</h3><ul><li>25 April</li><li>Marks the Gallipoli landing in 1915</li><li>Rosemary</li><li>Dawn services and marches</li></ul></div></div>`,n:'Students complete a Venn diagram in pairs. What do both days share? (Remembering, the Last Post, the Ode.)'},
+    {h:`<p class="kicker">Memorials keep names alive</p><h2>The State War Memorial in Kings Park lists more than 7,000 Western Australians who died in the First World War.</h2><p>Is there a memorial near our school?</p>`,n:'Show a local memorial on a map if possible.'},
+    {c:'light',h:`<p class="kicker">Your turn: symbol detective</p><ol class="steps"><li>Choose one symbol of remembrance.</li><li>Draw it carefully.</li><li>Write: what is it?</li><li>Write: what does it mean?</li><li>Write: how do people use it on Remembrance Day?</li></ol>`,n:'Display finished work near the assembly area.'}
+  ],
+  upper:[
+    {c:'center',h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Behind every name</h1><p class="kicker">Remembering real people · Years 5 and 6</p>`,n:'Set the purpose: today we move from numbers to people.'},
+    {h:`<p class="kicker">Australia, 1914–1918</p><div class="sgrid" style="grid-template-columns:repeat(3,1fr)"><div><b style="font-size:5cqw">&lt;5 million</b><span>people lived in Australia</span></div><div><b style="font-size:5cqw">416,000</b><span>enlisted to serve</span></div><div><b style="font-size:5cqw">60,000+</b><span>died</span></div></div>`,n:'Ask: what do these numbers tell us? What do they not tell us?'},
+    {h:`<p class="kicker">Western Australia's story</p><h2>More than a third of WA men aged 18 to 41 served in the First World War.</h2><p>About half of them were killed or wounded.</p>`,n:'Make it concrete: imagine one in three adult men from your street gone at once.'},
+    {h:`<p class="kicker">Kings Park remembers</p><h2>The State War Memorial was unveiled in 1929.</h2><p>Along the Honour Avenues, more than 1,100 plaques each name one person, so they are remembered as individuals, not only as numbers.</p>`,n:'Show photos of the Honour Avenues or a local honour board if you have them.'},
+    {h:`<p class="kicker">Who served?</p><h2>People from many backgrounds served Australia.</h2><p>Aboriginal and Torres Strait Islander people served, even though many were not treated as equal citizens at home. Nurses served close to the fighting. Migrants and the sons and daughters of migrants enlisted too.</p>`,n:'Acknowledge Aboriginal and Torres Strait Islander service. Students may know of family stories; invite but don\'t require sharing.'},
+    {c:'light',h:`<p class="kicker">How to research a name</p><ol class="steps"><li>Choose a name from a memorial, honour board or the class list.</li><li>Search the Roll of Honour on the Australian War Memorial website.</li><li>Record: their unit, where they came from, their age.</li><li>Look for one human detail: a job, a hometown, a family.</li></ol>`,n:'Model one search on the board first. Pre-check names for sensitive details.'},
+    {c:'light',h:`<p class="kicker">Make a remembrance card</p><ol class="steps"><li>Their name</li><li>Where they came from</li><li>One fact about their life</li><li>One sentence: why we remember them</li></ol><div class="art" style="width:14cqw">${P()}</div>`,n:'Cards can go on a display or be carried by class representatives at the assembly.'},
+    {c:'center',h:`<h2>Why might it matter to remember one person,<br>not only a number?</h2><p>Lest we forget.</p>`,n:'Close with a short discussion. Collect two or three responses.'}
+  ]
+};
+
+function buildViewer(el){
+  const deck = decks[el.dataset.deck]; let i = 0, showNotes = el.dataset.deck==='assembly';
+  el.innerHTML = `<div class="stage" tabindex="0" role="region" aria-roledescription="slideshow" aria-label="Slides"><div class="slide"></div></div>
+  <div class="controls"><button class="btn" data-a="prev" aria-label="Previous slide">Previous</button><span class="counter" aria-live="polite"></span><button class="btn" data-a="next" aria-label="Next slide">Next</button><button class="btn primary" data-a="present">Present</button><button class="btn" data-a="notes"></button><div class="dots" aria-hidden="true">${deck.map(()=>'<i></i>').join('')}</div></div>
+  <div class="notes"></div>`;
+  const slide = el.querySelector('.slide'), counter = el.querySelector('.counter'), notes = el.querySelector('.notes'),
+        prev = el.querySelector('[data-a=prev]'), next = el.querySelector('[data-a=next]'), nb = el.querySelector('[data-a=notes]'), pb = el.querySelector('[data-a=present]'), dots=[...el.querySelectorAll('.dots i')];
+  function render(){
+    const s = deck[i]; slide.className = 'slide ' + (s.c||''); slide.innerHTML = s.h;
+    counter.textContent = `${i+1} / ${deck.length}`; prev.disabled = i===0; next.disabled = i===deck.length-1;
+    notes.innerHTML = `<b>Teacher notes, slide ${i+1}:</b> ${s.n}`; notes.hidden = !showNotes; nb.textContent = showNotes ? 'Hide notes' : 'Show notes';
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+  }
+  const go = d => { i = Math.max(0, Math.min(deck.length-1, i+d)); render(); };
+  prev.onclick = ()=>go(-1); next.onclick = ()=>go(1);
+  nb.onclick = ()=>{ showNotes=!showNotes; render(); };
+  function exitPresent(){ el.classList.remove('presenting'); pb.textContent='Present'; document.body.style.overflow=''; try{ if(document.fullscreenElement) document.exitFullscreen(); }catch(e){} }
+  pb.onclick = ()=>{
+    if(el.classList.contains('presenting')){ exitPresent(); return; }
+    el.classList.add('presenting'); pb.textContent='Exit'; document.body.style.overflow='hidden';
+    try{ const p = el.requestFullscreen && el.requestFullscreen(); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+    el.querySelector('.stage').focus();
+  };
+  document.addEventListener('fullscreenchange',()=>{ if(el.isConnected && !document.fullscreenElement && el.classList.contains('presenting')) exitPresent(); });
+  el.addEventListener('keydown', e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); go(1); }
+    else if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); go(-1); }
+    else if(e.key==='Escape' && el.classList.contains('presenting')) exitPresent();
+  });
+  slide.addEventListener('click', ()=>{ if(el.classList.contains('presenting')) go(1); });
+  render();
+}
+document.querySelectorAll('.viewer').forEach(buildViewer);
+
+/* tabs */
+const tabs=[...document.querySelectorAll('.tab')];
+function selectTab(t){ tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;}); }
+tabs.forEach((t,k)=>{ t.onclick=()=>selectTab(t); t.onkeydown=e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ const n=tabs[(k+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length]; selectTab(n); n.focus(); } }; });
+
+/* staff-only assembly: encrypted at build time by tools/protect.mjs */
+const LOCKED = {"v":1,"iter":250000,"salt":"t7fA4RdY6pkRH7x6o4EV1g==","iv":"58pa5A2ZUlwo2LcF","ct":"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"};
+const lockBox = document.getElementById('assembly-lock'), lockedArea = document.getElementById('assembly-content'),
+      lockForm = document.getElementById('lockForm'), pwInput = document.getElementById('pw'), lockMsg = document.getElementById('lockMsg'), unlockBtn = document.getElementById('unlockBtn');
+async function decryptAssembly(pw){
+  const b = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b(LOCKED.salt), iterations:LOCKED.iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv:b(LOCKED.iv)}, key, b(LOCKED.ct));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+async function tryUnlock(pw, quiet){
+  if(typeof LOCKED !== 'object'){ lockMsg.textContent = 'This page has not been built yet. Run tools/protect.mjs to add the assembly.'; return; }
+  if(!window.crypto || !crypto.subtle){ lockMsg.textContent = 'This browser cannot unlock the page. Open it over https (for example on GitHub Pages) in an up-to-date browser.'; return; }
+  unlockBtn.disabled = true; if(!quiet) lockMsg.textContent = 'Checking…';
+  try{
+    const data = await decryptAssembly(pw);
+    decks.assembly = data.slides;
+    lockedArea.innerHTML = data.html; lockedArea.hidden = false; lockBox.hidden = true; lockMsg.textContent = '';
+    lockedArea.querySelectorAll('.viewer').forEach(buildViewer);
+    initChecklist();
+    document.getElementById('relock').onclick = () => {
+      try{ sessionStorage.removeItem('rd-staff'); }catch(e){}
+      lockedArea.innerHTML = ''; lockedArea.hidden = true; lockBox.hidden = false; pwInput.value = ''; delete decks.assembly;
+    };
+    try{ sessionStorage.setItem('rd-staff', pw); }catch(e){}
+  }catch(e){
+    if(!quiet){ lockMsg.textContent = "That password didn't work. Check capital letters and try again."; pwInput.select(); }
+    try{ sessionStorage.removeItem('rd-staff'); }catch(e2){}
+  }finally{ unlockBtn.disabled = false; }
+}
+lockForm.addEventListener('submit', e => { e.preventDefault(); tryUnlock(pwInput.value, false); });
+try{ const remembered = sessionStorage.getItem('rd-staff'); if(remembered) tryUnlock(remembered, true); }catch(e){}
+
+/* quick lessons */
+const step = (title, time, text) => `<b>${title}</b><span class="t">${time}</span><br>${text}`;
+const QUICK = [
+  {
+    id:'q-sounds', title:'Sounds of remembrance', years:[1,4], label:'Years 1–4', time:'30 minutes', setup:'2 minutes',
+    materials:['A recording of the Last Post (about 1 minute)','Paper and coloured pencils or crayons'],
+    tip:'Play the recording once before class so you know the volume is right for the room.',
+    steps:[
+      step('Listen','5 min','Slide 2. Students close their eyes and listen to the Last Post all the way through.'),
+      step('Feelings','5 min','Slide 3. Students choose words from the word bank, or their own, to describe how it made them feel.'),
+      step('Why it is played','5 min','Slide 4. Explain what the Last Post is for and when they will hear it at the assembly.'),
+      step('Draw the sound','15 min','Slide 5. Play the recording again while students draw lines, shapes and colours that match the music, then add one feeling word.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Sounds of remembrance</h1><p class="kicker">Listening to the Last Post</p>`, n:'Settle the class so the room is quiet before you start.'},
+      {c:'center', h:`<h1>Close your eyes and listen</h1><p>Listen all the way to the end.<br>Notice how the music makes you feel.</p>`, n:'Play the Last Post once, start to finish.'},
+      {h:`<h2>How did it make you feel?</h2><div class="words"><span>calm</span><span>sad</span><span>proud</span><span>still</span><span>peaceful</span><span>thoughtful</span><span>lonely</span><span>respectful</span></div>`, n:'Take a few answers. There are no wrong feelings.'},
+      {h:`<p class="kicker">Why is it played?</p><h2>Long ago, the Last Post told soldiers the day was over.</h2><p>Today it is played to say goodbye to those who died, and to help us remember. You will hear it at our assembly.</p>`, n:'Explain that everyone stands still and quiet while it plays.'},
+      {c:'light', h:`<p class="kicker">Draw the sound</p><ol class="steps"><li>Listen to the Last Post again.</li><li>Draw lines, shapes and colours that match the music.</li><li>Write one feeling word on your drawing.</li></ol>`, n:'Play the recording again, or on a loop, while students draw.'}
+    ]
+  },
+  {
+    id:'q-acrostic', title:'Remembrance acrostic poems', years:[2,6], label:'Years 2–6', time:'30–40 minutes', setup:'None',
+    materials:['Paper and pencils','Optional: red paper poppy shapes for the final copy'],
+    tip:'Younger students can write single words for each letter; older students can write full lines.',
+    steps:[
+      step('What is an acrostic?','5 min','Slide 2. Read the example together and point out the first letters spelling a word.'),
+      step('Choose a word','5 min','Slide 3. Students choose REMEMBER, POPPY, PEACE or, for Years 5–6, LEST WE FORGET.'),
+      step('Draft','15 min','Slide 4. Students write the letters down the page and use the word bank to help.'),
+      step('Publish','10 min','Students copy their best version onto a poppy shape for display near the assembly area.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Remembrance acrostic poems</h1>`, n:'Today students write a short poem about Remembrance Day.'},
+      {h:`<p class="kicker">An acrostic: the first letters spell a word</p><p class="acro"><b>P</b>eople stand still at eleven<br><b>E</b>very head is gently bowed<br><b>A</b> bugle plays across the park<br><b>C</b>alm settles on the crowd<br><b>E</b>ach of us remembers</p>`, n:'Read it aloud. Ask: what word do the first letters spell?'},
+      {h:`<h2>Choose your word</h2><div class="words"><span>REMEMBER</span><span>POPPY</span><span>PEACE</span><span>LEST WE FORGET</span></div><p style="margin-top:2.5cqw">LEST WE FORGET is a challenge for Years 5 and 6.</p>`, n:'Let students choose. Shorter words suit younger writers.'},
+      {c:'light', h:`<p class="kicker">Word bank</p><div class="words"><span>remember</span><span>silence</span><span>poppy</span><span>brave</span><span>family</span><span>peace</span><span>eleven</span><span>bugle</span><span>thank you</span><span>memorial</span><span>courage</span><span>home</span></div>`, n:'Leave this slide up while students draft.'}
+    ]
+  },
+  {
+    id:'q-chain', title:'Peace paper chain', years:[0,3], label:'Pre-primary – Year 3', time:'30 minutes', setup:'5 minutes',
+    materials:['Strips of coloured paper (about 3 cm by 20 cm), two per student','Pencils or crayons','Glue sticks or sticky tape'],
+    tip:'Join the class chains together to hang across the assembly area.',
+    steps:[
+      step('What is peace?','5 min','Slide 2. Talk about what peace means in simple words.'),
+      step('Peace at school','5 min','Slide 3. Students share examples of peaceful things they do at school.'),
+      step('Write a wish','10 min','Slide 4. Students write or draw a peace wish on their paper strip.'),
+      step('Link the chain','10 min','Slide 5. Join the strips into one long class chain.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Our peace chain</h1>`, n:'On Remembrance Day we remember people who served and we hope for peace.'},
+      {h:`<h1>What is peace?</h1><p>Peace is when people live together safely and kindly, without fighting.</p>`, n:'Ask: what does peace feel like?'},
+      {h:`<h2>What does peace look like at school?</h2><div class="words"><span>sharing</span><span>taking turns</span><span>including others</span><span>saying sorry</span><span>helping</span><span>listening</span></div>`, n:'Add the class\'s own ideas.'},
+      {c:'light', h:`<p class="kicker">Write a peace wish</p><h2>I wish for peace so that…</h2><p>Write or draw your wish on your paper strip.</p>`, n:'Pre-primary students can draw; scribe for them if needed.'},
+      {c:'light', h:`<p class="kicker">Link our chain</p><ol class="steps"><li>Make your strip into a loop.</li><li>Put the next strip through the loop.</li><li>Glue or tape it closed.</li><li>Keep going until everyone's wish is joined.</li></ol>`, n:'Hang the chain in the room or the assembly area.'}
+    ]
+  },
+  {
+    id:'q-maths', title:'Poppy maths', years:[0,2], label:'Pre-primary – Year 2', time:'30–40 minutes', setup:'5 minutes',
+    materials:['Red counters, or small paper poppies','Optional: ten-frame mats'],
+    tip:'Pick the slides that suit your class: counting for Pre-primary, groups for Year 2.',
+    steps:[
+      step('Count','5 min','Slide 2. Count the poppies together, then students make the same number with counters.'),
+      step('Patterns','10 min','Slide 3. What comes next? Students make their own poppy and leaf patterns.'),
+      step('Make 11','10 min','Slide 4. Fill a ten-frame and show “one more” to make 11, the number of Remembrance Day.'),
+      step('Groups','10 min','Slide 5 (Years 1–2). Count groups of poppies, then make your own equal groups.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Poppy maths</h1>`, n:'Hand out counters or paper poppies.'},
+      {h:`<h2>How many poppies?</h2><div class="prow">${Array(7).fill(P('9cqw')).join('')}</div>`, n:'Answer: 7. Ask students to make 7 with their counters.'},
+      {h:`<h2>What comes next?</h2><div class="prow">${P('9cqw')}${LEAF()}${P('9cqw')}${LEAF()}${P('9cqw')}<div class="qmark">?</div></div>`, n:'Answer: a leaf. Students then make their own pattern.'},
+      {h:`<h2>Make 11</h2><p>10 and 1 more makes 11. Remembrance Day is on the 11th.</p><div style="display:flex;gap:3cqw;align-items:end"><div class="tenframe">${Array(10).fill(`<div>${P()}</div>`).join('')}</div><div class="tenframe" style="grid-template-columns:8cqw"><div>${P()}</div></div></div>`, n:'Count together to 11. Link to 11 o\'clock on 11 November.'},
+      {h:`<h2>How many groups? How many in each?</h2><div class="prow" style="gap:3cqw">${Array(3).fill(`<div class="grp">${P('8cqw')}${P('8cqw')}</div>`).join('')}</div>`, n:'3 groups of 2 makes 6. Students make other equal groups.'}
+    ]
+  },
+  {
+    id:'q-timeline', title:'Timeline: 1918 to today', years:[4,6], label:'Years 4–6', time:'40 minutes', setup:'5 minutes',
+    materials:['A long piece of string and pegs, or a line drawn across the whiteboard','Event cards (students can write these from slide 2)'],
+    tip:'Use a scale of 10 cm for every 10 years. The timeline from 1914 to 2026 is then just over 1.1 metres long.',
+    steps:[
+      step('Event cards','10 min','Slide 2. In small groups, students write each event onto a card.'),
+      step('How long ago?','10 min','Slide 3. Work out how many years ago each event happened, starting with 2026 − 1918.'),
+      step('Build the timeline','15 min','Slide 4. Groups peg their cards onto the string at the right spacing.'),
+      step('Discuss','5 min','What do you notice about the gaps? Which event surprised you?')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Timeline: 1918 to today</h1>`, n:'Today we put the events of Remembrance Day in order.'},
+      {h:`<p class="kicker">Event cards</p><div class="tl"><div><b>1914</b>The First World War begins</div><div><b>1915</b>Anzacs land at Gallipoli (25 April)</div><div><b>1918</b>The Armistice: fighting stops at 11am, 11 November</div><div><b>1921</b>Poppies first sold in Australia</div><div><b>1929</b>State War Memorial in Kings Park unveiled</div><div><b>1939–45</b>The Second World War</div><div><b>1947</b>Australians begin serving as peacekeepers</div><div><b>1993</b>The Unknown Australian Soldier is laid to rest in Canberra</div><div><b>1997</b>One minute's silence at 11am proclaimed</div><div><b>2026</b>The 108th Remembrance Day</div></div>`, n:'Groups write one event per card.'},
+      {h:`<h2>How long ago?</h2><p class="big" style="font-size:7cqw">2026 − 1918 = 108</p><p>Work out how many years ago each event happened.</p>`, n:'Model the first one, then groups calculate the rest.'},
+      {c:'light', h:`<p class="kicker">Build the timeline</p><ol class="steps"><li>Mark 1914 at one end and 2026 at the other.</li><li>Every 10 cm is 10 years.</li><li>Measure and peg each card in the right place.</li><li>Check: are the cards in order?</li></ol>`, n:'Let groups check each other\'s placements.'}
+    ]
+  },
+  {
+    id:'q-thanks', title:'Thank-you cards', years:[1,6], label:'Years 1–6', time:'30 minutes', setup:'5 minutes',
+    materials:['Folded card or paper','Pencils, textas or crayons','An envelope for the class set'],
+    tip:'Contact your local RSL sub-branch first to ask whether they would like to receive the cards.',
+    steps:[
+      step('Who serves?','5 min','Slide 2. Talk about who we might thank: Defence members, veterans and their families.'),
+      step('What could you say?','5 min','Slide 3. Share sentence starters and ideas.'),
+      step('Design','15 min','Slide 4. Students draw a poppy or peaceful picture on the front and write a message inside.'),
+      step('Send','5 min','Slide 5. Collect the cards to deliver to the local RSL sub-branch.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Thank-you cards</h1>`, n:'Today we write cards to say thank you.'},
+      {h:`<h2>Who serves Australia?</h2><div class="sgrid"><div><b>Navy, Army and Air Force</b><span>People serving in the Australian Defence Force today.</span></div><div><b>Veterans</b><span>People who served in the past.</span></div><div><b>Peacekeepers</b><span>People who help keep peace in other countries.</span></div><div><b>Families</b><span>The people who wait and support them at home.</span></div></div>`, n:'Some students may have family members who serve. Invite them to share if they wish.'},
+      {h:`<h2>What could you say?</h2><div class="words"><span>Thank you for…</span><span>I will remember…</span><span>I hope you…</span><span>On Remembrance Day I…</span></div>`, n:'Brainstorm a few full sentences on the board.'},
+      {c:'light', h:`<p class="kicker">Design your card</p><ol class="steps"><li>Front: draw a poppy or a peaceful picture.</li><li>Inside: write your thank-you message.</li><li>Sign your first name and class.</li></ol><div class="art" style="width:16cqw">${P()}</div>`, n:'First names only, for privacy.'},
+      {c:'center', h:`<h2>Our cards will go to our local RSL</h2><p>Thank you for helping us remember.</p>`, n:'Collect the cards in one envelope.'}
+    ]
+  }
+];
+const qlist = document.getElementById('qlist'), qdetail = document.getElementById('qdetail');
+let qFilter = 'all', qCurrent = null;
+function inFilter(q){ if(qFilter==='all') return true; const [a,b] = qFilter.split('-').map(Number); return q.years[0] <= b && q.years[1] >= a; }
+function renderQuickList(){
+  const items = QUICK.filter(inFilter);
+  if(!items.some(q=>q.id===qCurrent)) qCurrent = items[0] ? items[0].id : null;
+  qlist.innerHTML = items.map(q=>`<li><button type="button" class="qitem" data-id="${q.id}" aria-current="${q.id===qCurrent}"><b>${q.title}</b><span>${q.label} · ${q.time} · set-up ${q.setup.toLowerCase()}</span></button></li>`).join('');
+  qlist.querySelectorAll('.qitem').forEach(b=>b.onclick=()=>{ qCurrent=b.dataset.id; renderQuickList(); if(matchMedia('(max-width:860px)').matches) qdetail.scrollIntoView({behavior:'smooth'}); });
+  renderQuickDetail();
+}
+function renderQuickDetail(){
+  const q = QUICK.find(x=>x.id===qCurrent); if(!q){ qdetail.innerHTML=''; return; }
+  decks[q.id] = q.slides;
+  qdetail.innerHTML = `<div class="lesson-head"><h3>${q.title}</h3><span class="meta">${q.label} · ${q.time}</span></div>
+    <span class="setup">Set-up: ${q.setup}</span>
+    <div class="viewer" data-deck="${q.id}"></div>
+    <div class="qcols"><div><h4>What to do</h4><ol class="sequence">${q.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
+    <div class="side"><h4>You will need</h4><ul>${q.materials.map(m=>`<li>${m}</li>`).join('')}</ul><h4>Tip</h4><ul><li>${q.tip}</li></ul></div></div>`;
+  buildViewer(qdetail.querySelector('.viewer'));
+}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ qFilter=c.dataset.f; document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed', x===c)); renderQuickList(); });
+renderQuickList();
+
+/* countdown */
+const target = new Date('2026-11-11T11:00:00+08:00').getTime(), countEl = document.getElementById('count');
+function tick(){
+  const d = target - Date.now();
+  if(d <= 0 && d > -86400000){ countEl.innerHTML = '<span class="n" style="font-style:italic">Lest we forget.</span>'; return; }
+  if(d <= 0){ countEl.innerHTML = '<span class="n">Thank you.</span><span class="l">Remembrance Day 2026 has passed.</span>'; return; }
+  const days=Math.floor(d/864e5), hrs=Math.floor(d%864e5/36e5), mins=Math.floor(d%36e5/6e4);
+  const u=(n,l)=>`<span class="unit"><span class="n">${n}</span><span class="l">${l}</span></span>`;
+  countEl.innerHTML = u(days, days===1?'day':'days') + u(hrs, hrs===1?'hour':'hours') + u(mins, mins===1?'minute':'minutes');
+}
+tick(); setInterval(tick, 20000);
+
+/* checklist memory (runs after the assembly is unlocked) */
+function initChecklist(){
+  const boxes=[...document.querySelectorAll('.checklist input')];
+  try{ const saved=JSON.parse(localStorage.getItem('rd-check')||'[]'); boxes.forEach((b,k)=>b.checked=!!saved[k]); }catch(e){}
+  boxes.forEach(b=>b.onchange=()=>{ try{ localStorage.setItem('rd-check', JSON.stringify(boxes.map(x=>x.checked))); }catch(e){} });
+}
+
+/* theme */
+const root=document.documentElement;
+try{ const t=localStorage.getItem('rd-theme'); if(t) root.dataset.theme=t; }catch(e){}
+document.getElementById('themeBtn').onclick=()=>{
+  const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+  try{ localStorage.setItem('rd-theme', root.dataset.theme); }catch(e){}
+};
+</script>
+</body>
+</html>

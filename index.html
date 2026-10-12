@@ -173,12 +173,6 @@ blockquote.ode{margin:1rem 0 0;padding:1.25rem 1.5rem;border-left:3px solid var(
 .tag.teach{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
 footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--muted)}
 
-/* lock */
-.lock{max-width:440px;margin-top:.5rem}
-.lockrow{display:flex;gap:.5rem;margin-top:.4rem}
-.lockrow input{flex:1;min-width:0;font-family:var(--sans);font-size:1rem;padding:.5rem .75rem;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);min-height:40px}
-.lockmsg{color:var(--poppy);min-height:1.5em;margin:.5rem 0 0}
-
 /* quick lessons */
 .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.75rem}
 .chip{font-family:var(--sans);font-size:.88rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:.4rem .95rem;cursor:pointer;min-height:36px}
@@ -210,7 +204,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
 .slide.light .words span{color:#1E2621}
 
 @media print{
-  .topbar,.hero,.viewer,.controls,.printrow,#assembly,#quick,#briefing,#activities,#links,footer,.tabs,.themebtn{display:none!important}
+  .topbar,.hero,.viewer,.controls,.printrow,#quick,#briefing,#activities,#links,footer,.tabs,.themebtn{display:none!important}
   body{background:#fff;color:#000;font-size:11pt}
   section{border:0;padding:0}
   .panel[hidden]{display:none!important}
@@ -224,7 +218,6 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
   <div class="wrap">
     <a class="brand" href="#top"><svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true"><use href="#poppy"/></svg><span>Remembrance Day 2026</span></a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#assembly">Assembly (staff)</a>
       <a href="#lessons">Lesson plans</a>
       <a href="#quick">Quick lessons</a>
       <a href="#briefing">Teacher briefing</a>
@@ -254,7 +247,7 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
       <div class="hero-grid">
         <div>
           <h1>At the eleventh hour of the eleventh day of the eleventh month</h1>
-          <p class="lede">Everything you need to teach and mark Remembrance Day at our school: the assembly slideshow, lesson plans with slides for every year group, background notes and safe websites for students.</p>
+          <p class="lede">Everything you need to teach and mark Remembrance Day at our school: lesson plans with slides for every year group, quick low-prep lessons, background notes and safe websites for students.</p>
         </div>
         <svg class="hero-poppy" viewBox="0 0 100 100" role="img" aria-label="Red poppy"><use href="#poppy"/></svg>
       </div>
@@ -262,22 +255,6 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
       <p class="count-caption">Until the minute's silence, 11:00am Wednesday 11 November 2026 (Perth time).</p>
     </div>
   </div>
-
-  <!-- ASSEMBLY (staff only, encrypted) -->
-  <section id="assembly">
-    <div class="wrap">
-      <div id="assembly-lock">
-        <h2>The assembly and minute's silence</h2>
-        <p class="intro">The assembly slideshow, run sheet and checklist are for staff. Enter the staff password to open them.</p>
-        <form id="lockForm" class="lock" autocomplete="off">
-          <label for="pw" class="ui">Staff password</label>
-          <div class="lockrow"><input id="pw" type="password" required><button class="btn primary" type="submit" id="unlockBtn">Unlock</button></div>
-          <p id="lockMsg" class="ui lockmsg" role="alert"></p>
-        </form>
-      </div>
-      <div id="assembly-content" hidden></div>
-    </div>
-  </section>
 
   <!-- LESSONS -->
   <section id="lessons">
@@ -589,40 +566,6 @@ const tabs=[...document.querySelectorAll('.tab')];
 function selectTab(t){ tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;}); }
 tabs.forEach((t,k)=>{ t.onclick=()=>selectTab(t); t.onkeydown=e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ const n=tabs[(k+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length]; selectTab(n); n.focus(); } }; });
 
-/* staff-only assembly: encrypted at build time by tools/protect.mjs */
-const LOCKED = {"v":1,"iter":250000,"salt":"t7fA4RdY6pkRH7x6o4EV1g==","iv":"58pa5A2ZUlwo2LcF","ct":"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"};
-const lockBox = document.getElementById('assembly-lock'), lockedArea = document.getElementById('assembly-content'),
-      lockForm = document.getElementById('lockForm'), pwInput = document.getElementById('pw'), lockMsg = document.getElementById('lockMsg'), unlockBtn = document.getElementById('unlockBtn');
-async function decryptAssembly(pw){
-  const b = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b(LOCKED.salt), iterations:LOCKED.iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
-  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv:b(LOCKED.iv)}, key, b(LOCKED.ct));
-  return JSON.parse(new TextDecoder().decode(plain));
-}
-async function tryUnlock(pw, quiet){
-  if(typeof LOCKED !== 'object'){ lockMsg.textContent = 'This page has not been built yet. Run tools/protect.mjs to add the assembly.'; return; }
-  if(!window.crypto || !crypto.subtle){ lockMsg.textContent = 'This browser cannot unlock the page. Open it over https (for example on GitHub Pages) in an up-to-date browser.'; return; }
-  unlockBtn.disabled = true; if(!quiet) lockMsg.textContent = 'Checking…';
-  try{
-    const data = await decryptAssembly(pw);
-    decks.assembly = data.slides;
-    lockedArea.innerHTML = data.html; lockedArea.hidden = false; lockBox.hidden = true; lockMsg.textContent = '';
-    lockedArea.querySelectorAll('.viewer').forEach(buildViewer);
-    initChecklist();
-    document.getElementById('relock').onclick = () => {
-      try{ sessionStorage.removeItem('rd-staff'); }catch(e){}
-      lockedArea.innerHTML = ''; lockedArea.hidden = true; lockBox.hidden = false; pwInput.value = ''; delete decks.assembly;
-    };
-    try{ sessionStorage.setItem('rd-staff', pw); }catch(e){}
-  }catch(e){
-    if(!quiet){ lockMsg.textContent = "That password didn't work. Check capital letters and try again."; pwInput.select(); }
-    try{ sessionStorage.removeItem('rd-staff'); }catch(e2){}
-  }finally{ unlockBtn.disabled = false; }
-}
-lockForm.addEventListener('submit', e => { e.preventDefault(); tryUnlock(pwInput.value, false); });
-try{ const remembered = sessionStorage.getItem('rd-staff'); if(remembered) tryUnlock(remembered, true); }catch(e){}
-
 /* quick lessons */
 const step = (title, time, text) => `<b>${title}</b><span class="t">${time}</span><br>${text}`;
 const QUICK = [
@@ -767,13 +710,6 @@ function tick(){
   countEl.innerHTML = u(days, days===1?'day':'days') + u(hrs, hrs===1?'hour':'hours') + u(mins, mins===1?'minute':'minutes');
 }
 tick(); setInterval(tick, 20000);
-
-/* checklist memory (runs after the assembly is unlocked) */
-function initChecklist(){
-  const boxes=[...document.querySelectorAll('.checklist input')];
-  try{ const saved=JSON.parse(localStorage.getItem('rd-check')||'[]'); boxes.forEach((b,k)=>b.checked=!!saved[k]); }catch(e){}
-  boxes.forEach(b=>b.onchange=()=>{ try{ localStorage.setItem('rd-check', JSON.stringify(boxes.map(x=>x.checked))); }catch(e){} });
-}
 
 /* theme */
 const root=document.documentElement;

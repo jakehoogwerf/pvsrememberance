@@ -204,6 +204,13 @@ footer{padding:3rem 0 4rem;font-family:var(--sans);font-size:.9rem;color:var(--m
 .slide.light .words span{color:#1E2621}
 
 /* printables */
+.sheetlist .grouphead{display:block;font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.5rem 0 .5rem}
+.sheetlist .grouphead:first-child{padding-top:.5rem}
+.sheet .poem{font-size:12pt;line-height:1.5;margin:0 0 4mm;padding:3mm 5mm;border-left:2px solid #111}
+.sheet .acard{padding:4mm 5mm;font-family:var(--sans);font-size:10pt}
+.sheet .acard .q{margin-top:2mm}
+.sheet .aline.small{height:18mm}
+.sheet .aline.small b{font-size:13pt;width:28mm}
 .linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--poppy);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .sheetlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .sheetlist li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
@@ -474,7 +481,7 @@ dialog#sheetDialog::backdrop{background:rgba(0,0,0,.55)}
   <section id="quick">
     <div class="wrap">
       <h2>Quick lessons</h2>
-      <p class="intro">Thirteen short, low-prep lessons that need little more than paper and pencils. Each comes with its own slides and any worksheets it needs, and the set-up time is shown so you can pick one for a spare half hour.</p>
+      <p class="intro">Nineteen short, low-prep lessons that need little more than paper and pencils. Each comes with its own slides and any worksheets it needs, and the set-up time is shown so you can pick one for a spare half hour.</p>
       <div class="chips" role="group" aria-label="Filter by year group">
         <button class="chip" type="button" aria-pressed="true" data-f="all">All</button>
         <button class="chip" type="button" aria-pressed="false" data-f="0-2">Pre-primary – Year 2</button>
@@ -492,8 +499,11 @@ dialog#sheetDialog::backdrop{background:rgba(0,0,0,.55)}
   <section id="printables">
     <div class="wrap">
       <h2>Printables</h2>
-      <p class="intro">Every worksheet, template and card set used in the lessons, ready to print on A4. Preview a sheet first, or print it straight away.</p>
+      <p class="intro">Every worksheet, template, card set and colouring page used in the lessons, ready to print on A4, plus every slideshow as a PowerPoint file. Preview a sheet first, or print it straight away.</p>
       <ul class="sheetlist" id="sheetList"></ul>
+      <h3 id="powerpoints">Slides as PowerPoint</h3>
+      <p class="intro" style="margin-bottom:1rem">Download any slideshow as an editable PowerPoint file, with the teacher notes in the speaker notes. The files are created on your computer when you click, so they always match the website. They use Georgia and Arial, which every computer has.</p>
+      <ul class="sheetlist" id="pptxList"></ul>
     </div>
   </section>
 
@@ -614,7 +624,7 @@ const decks = {
 function buildViewer(el){
   const deck = decks[el.dataset.deck]; let i = 0, showNotes = el.dataset.deck==='assembly';
   el.innerHTML = `<div class="stage" tabindex="0" role="region" aria-roledescription="slideshow" aria-label="Slides"><div class="slide"></div></div>
-  <div class="controls"><button class="btn" data-a="prev" aria-label="Previous slide">Previous</button><span class="counter" aria-live="polite"></span><button class="btn" data-a="next" aria-label="Next slide">Next</button><button class="btn primary" data-a="present">Present</button><button class="btn" data-a="notes"></button><div class="dots" aria-hidden="true">${deck.map(()=>'<i></i>').join('')}</div></div>
+  <div class="controls"><button class="btn" data-a="prev" aria-label="Previous slide">Previous</button><span class="counter" aria-live="polite"></span><button class="btn" data-a="next" aria-label="Next slide">Next</button><button class="btn primary" data-a="present">Present</button><button class="btn" data-a="notes"></button><button class="btn" type="button" data-pptx="${el.dataset.deck}" title="Download these slides as an editable PowerPoint file">PowerPoint</button><div class="dots" aria-hidden="true">${deck.map(()=>'<i></i>').join('')}</div></div>
   <div class="notes"></div>`;
   const slide = el.querySelector('.slide'), counter = el.querySelector('.counter'), notes = el.querySelector('.notes'),
         prev = el.querySelector('[data-a=prev]'), next = el.querySelector('[data-a=next]'), nb = el.querySelector('[data-a=notes]'), pb = el.querySelector('[data-a=present]'), dots=[...el.querySelectorAll('.dots i')];
@@ -899,7 +909,6 @@ document.getElementById('sheetPrint').onclick = ()=>printSheet(currentSheet);
 document.getElementById('sheetClose').onclick = ()=>{ if(dlg.close) dlg.close(); else dlg.removeAttribute('open'); };
 dlg.addEventListener('click', e=>{ if(e.target===dlg && dlg.close) dlg.close(); });
 document.addEventListener('click', e=>{ const b = e.target.closest('[data-sheet]'); if(b){ e.preventDefault(); openSheet(b.dataset.sheet); } });
-document.getElementById('sheetList').innerHTML = Object.entries(SHEETS).map(([id,s])=>`<li><div><b>${s.title}</b><span class="meta">For: ${s.use}</span></div><div class="sbtns"><button class="btn" type="button" data-sheet="${id}">Preview</button><button class="btn primary" type="button" onclick="printSheet('${id}')">Print</button></div></li>`).join('');
 
 /* live one-minute timer used on the silence slide */
 window.startSilence = function(btn, secs){
@@ -1030,6 +1039,334 @@ QUICK.push(
     ]
   }
 );
+
+/* ---------- more colouring pages ---------- */
+const STROKE = 'fill="none" stroke="#111" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"';
+function bigPoppy(cx, cy, r){
+  return `<g ${STROKE}>
+    <path d="M${cx} ${cy} C${cx-r*1.1} ${cy-r*0.2} ${cx-r*0.9} ${cy-r*1.25} ${cx} ${cy-r*1.05} C${cx+r*0.9} ${cy-r*1.25} ${cx+r*1.1} ${cy-r*0.2} ${cx} ${cy}"/>
+    <path d="M${cx} ${cy} C${cx+r*0.2} ${cy-r*1.1} ${cx+r*1.25} ${cy-r*0.9} ${cx+r*1.05} ${cy} C${cx+r*1.25} ${cy+r*0.9} ${cx+r*0.2} ${cy+r*1.1} ${cx} ${cy}"/>
+    <path d="M${cx} ${cy} C${cx+r*1.1} ${cy+r*0.2} ${cx+r*0.9} ${cy+r*1.25} ${cx} ${cy+r*1.05} C${cx-r*0.9} ${cy+r*1.25} ${cx-r*1.1} ${cy+r*0.2} ${cx} ${cy}"/>
+    <path d="M${cx} ${cy} C${cx-r*0.2} ${cy+r*1.1} ${cx-r*1.25} ${cy+r*0.9} ${cx-r*1.05} ${cy} C${cx-r*1.25} ${cy-r*0.9} ${cx-r*0.2} ${cy-r*1.1} ${cx} ${cy}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r*0.3}" fill="#fff"/>
+    ${[0,45,90,135,180,225,270,315].map(a=>{const t=a*Math.PI/180;return `<line x1="${cx+Math.cos(t)*r*0.12}" y1="${cy+Math.sin(t)*r*0.12}" x2="${cx+Math.cos(t)*r*0.26}" y2="${cy+Math.sin(t)*r*0.26}"/>`}).join('')}
+  </g>`;
+}
+function leaf(x, y, len, ang){ return `<path ${STROKE} transform="rotate(${ang} ${x} ${y})" d="M${x} ${y} C${x+len*0.35} ${y-len*0.35} ${x+len*0.75} ${y-len*0.3} ${x+len} ${y} C${x+len*0.75} ${y+len*0.3} ${x+len*0.35} ${y+len*0.35} ${x} ${y}Z M${x} ${y} L${x+len*0.85} ${y}"/>`; }
+function outlineText(t, x, y, size){ return `<text x="${x}" y="${y}" text-anchor="middle" font-family="Georgia, serif" font-size="${size}" font-weight="700" fill="#fff" stroke="#111" stroke-width="1.1">${t}</text>`; }
+
+function colourLestWeForget(){
+  const s = `<svg viewBox="0 0 200 250" aria-hidden="true"><path ${STROKE} d="M100 140 C102 170 98 195 100 225"/>${leaf(100,185,45,-30)}${leaf(100,205,40,200)}${bigPoppy(100,82,58)}${outlineText('Lest we forget',100,245,22)}</svg>`;
+  return `<h1>Lest we forget</h1>${NAMELINE}<p class="inst">Colour the poppy. Red petals, a black centre and a green stem.</p><div class="frame">${s}</div>`;
+}
+function colourWreath(){
+  let s = `<svg viewBox="0 0 220 220" aria-hidden="true"><circle ${STROKE} cx="110" cy="110" r="88"/><circle ${STROKE} cx="110" cy="110" r="58"/>`;
+  for(let k=0;k<12;k++){ const a=k*30*Math.PI/180, x=110+Math.cos(a)*73, y=110+Math.sin(a)*73;
+    if(k%2===0) s += bigPoppy(x,y,14); else s += leaf(x-10*Math.cos(a+Math.PI/2), y-10*Math.sin(a+Math.PI/2), 22, k*30+90); }
+  s += outlineText('We',110,106,18)+outlineText('remember',110,128,18)+'</svg>';
+  return `<h1>A wreath of poppies</h1>${NAMELINE}<p class="inst">Colour the wreath. Wreaths are laid at memorials as a sign of respect.</p><div class="frame">${s}</div>`;
+}
+function colourDove(){
+  const s = `<svg viewBox="0 0 240 200" aria-hidden="true"><g ${STROKE}>
+    <circle cx="40" cy="40" r="20"/>${[0,40,80,120,160,200,240,280,320].map(a=>{const t=a*Math.PI/180;return `<line x1="${40+Math.cos(t)*26}" y1="${40+Math.sin(t)*26}" x2="${40+Math.cos(t)*34}" y2="${40+Math.sin(t)*34}"/>`}).join('')}
+    <path d="M70 115 C85 92 120 84 150 88 C160 80 172 76 182 80 C190 82 194 88 198 92 L188 94 C186 104 176 112 164 116 C150 132 120 142 90 140 C75 139 62 134 52 128 C60 124 66 120 70 115Z"/>
+    <path d="M52 128 L18 120 L30 132 L12 142 L36 142 L26 156 L56 138"/>
+    <path d="M100 96 C96 66 112 40 140 22 C138 42 144 60 150 88"/><path d="M110 92 C112 72 120 58 132 46"/><path d="M122 89 C124 76 130 66 138 58"/>
+    <circle cx="180" cy="87" r="2" fill="#111"/>
+    <path d="M196 93 C204 104 212 116 222 124"/></g>
+    ${leaf(204,104,14,-60)}${leaf(210,112,14,40)}${leaf(216,118,13,-50)}${leaf(220,122,12,30)}
+    <path ${STROKE} d="M0 185 C40 172 80 192 120 180 C160 168 200 190 240 178"/>
+    ${outlineText('Peace',178,48,28)}</svg>`;
+  return `<h1>Peace</h1>${NAMELINE}<p class="inst">The dove carrying an olive branch is a symbol of peace. Colour the picture and add your own background.</p><div class="frame">${s}</div>`;
+}
+function colourMemorial(){
+  let s = `<svg viewBox="0 0 220 240" aria-hidden="true"><g ${STROKE}>
+    <circle cx="170" cy="45" r="18"/><path d="M10 60 C20 50 34 52 38 60 C48 56 58 62 56 70 L12 70 C6 68 6 62 10 60Z"/>
+    <path d="M30 230 L30 160 M18 175 C24 150 36 150 42 175 C48 200 12 200 18 175Z"/>
+    <path d="M190 230 L190 150 M176 168 C182 140 198 140 204 168 C210 196 170 196 176 168Z"/>
+    <rect x="50" y="210" width="120" height="14"/><rect x="62" y="196" width="96" height="14"/><rect x="74" y="182" width="72" height="14"/>
+    <path d="M86 182 L94 66 L126 66 L134 182Z"/><path d="M94 66 L110 40 L126 66"/>
+    <rect x="96" y="100" width="28" height="36"/><line x1="100" y1="110" x2="120" y2="110"/><line x1="100" y1="118" x2="120" y2="118"/><line x1="100" y1="126" x2="120" y2="126"/>
+    <circle cx="110" cy="168" r="11"/><circle cx="110" cy="168" r="6"/>
+    <path d="M0 232 L220 232"/></g>`;
+  [[60,232],[80,234],[140,234],[160,232],[45,236],[175,236]].forEach(([x,y])=>{ s += `<path ${STROKE} d="M${x} ${y} L${x} ${y-14}"/>` + bigPoppy(x, y-20, 6); });
+  s += '</svg>';
+  return `<h1>Our memorial</h1>${NAMELINE}<p class="inst">Memorials help us remember people who served. Colour the memorial, then write a name or a message on the plaque.</p><div class="frame">${s}</div>`;
+}
+function colourPattern(){
+  let s = `<svg viewBox="0 0 200 250" aria-hidden="true"><rect ${STROKE} x="4" y="4" width="192" height="242" rx="4"/>`;
+  for(let r=0;r<5;r++) for(let c=0;c<4;c++){ const x=28+c*48+(r%2?24:0), y=30+r*48; if(x>180) continue; s += bigPoppy(x,y,13) + leaf(x+12,y+14,16,40) + leaf(x-12,y+14,16,140); }
+  s += '</svg>';
+  return `<h1>Poppy pattern</h1>${NAMELINE}<p class="inst">A calm, detailed colouring page. Try using different shades of red and green.</p><div class="frame">${s}</div>`;
+}
+
+/* ---------- worksheets for the new quick lessons ---------- */
+function animalCards(){
+  const c = `<div class="cut acard"><p class="q">My animal:</p>${LINES(1)}<div class="box" style="height:52mm;margin:2mm 0"></div><p class="q">How it helped:</p>${LINES(2)}<p class="q">One amazing fact:</p>${LINES(2)}</div>`;
+  return `<h1>Animal fact cards</h1>${NAMELINE}<p class="inst">Choose an animal that served in the war: horses, donkeys, pigeons or dogs. Draw it and write what it did.</p><div class="rcards">${c}${c}</div>`;
+}
+const FLANDERS = `In Flanders fields the poppies blow<br>Between the crosses, row on row,<br>That mark our place; and in the sky<br>The larks, still bravely singing, fly<br>Scarce heard amid the guns below.<br><br>We are the Dead. Short days ago<br>We lived, felt dawn, saw sunset glow,<br>Loved and were loved, and now we lie<br>In Flanders fields.<br><br>Take up our quarrel with the foe:<br>To you from failing hands we throw<br>The torch; be yours to hold it high.<br>If ye break faith with us who die<br>We shall not sleep, though poppies grow<br>In Flanders fields.`;
+function flandersSheet(){
+  return `<h1>In Flanders Fields</h1><p class="inst">By John McCrae, a Canadian doctor, written in May 1915.</p><div class="poem">${FLANDERS}</div>
+  <p class="q">1. What can you see and hear in the first verse?</p>${LINES(2)}<p class="q">2. Who is speaking in the poem?</p>${LINES(2)}<p class="q">3. Why do you think poppies became a symbol of remembrance?</p>${LINES(2)}`;
+}
+function memorialDesign(){
+  return `<h1>Design a memorial</h1>${NAMELINE}<p class="inst">Design a memorial for our school or town. Draw it and label its parts.</p><div class="box" style="height:105mm"></div>
+  <p class="q">Who does it remember?</p>${LINES(1)}<p class="q">What is it made from, and why?</p>${LINES(1)}<p class="q">What words are written on it?</p>${LINES(2)}<p class="q">Where would it stand, and why there?</p>${LINES(1)}`;
+}
+function sensesSheet(){
+  const l = t => `<div class="aline small"><b>${t}</b><span></span></div>`;
+  return `<h1>At eleven o’clock: a senses poem</h1>${NAMELINE}<p class="inst">Imagine you are at a Remembrance Day service. Finish each line, then give your poem a title.</p>
+  <p class="q">Title</p>${LINES(1)}${l('I see')}${l('I hear')}${l('I smell')}${l('I touch')}${l('I feel')}${l('I remember')}`;
+}
+Object.assign(SHEETS, {
+  colourpoppy:{title:'Lest we forget poppy', use:'Colouring, all ages', f:colourLestWeForget, g:'colour'},
+  colourwreath:{title:'Poppy wreath', use:'Colouring, all ages', f:colourWreath, g:'colour'},
+  colourdove:{title:'Dove of peace', use:'Colouring, all ages', f:colourDove, g:'colour'},
+  colourmemorial:{title:'Our memorial', use:'Colouring, all ages', f:colourMemorial, g:'colour'},
+  colourpattern:{title:'Poppy pattern (detailed)', use:'Colouring, Years 3–6', f:colourPattern, g:'colour'},
+  animals:{title:'Animal fact cards', use:'Animals in war', f:animalCards},
+  flanders:{title:'In Flanders Fields poem and questions', use:'In Flanders Fields', f:flandersSheet},
+  memorial:{title:'Design a memorial sheet', use:'Design a memorial', f:memorialDesign},
+  senses:{title:'Senses poem frame', use:'A senses poem', f:sensesSheet}
+});
+SHEETS.colouring.g = 'colour'; SHEETS.colouring.title = 'Poppy field'; SHEETS.colouring.use = 'Colouring, all ages';
+Object.assign(QSHEETS, {'q-animals':['animals'],'q-flanders':['flanders'],'q-memorial':['memorial'],'q-senses':['senses'],
+  'q-colour':['colouring','colourpoppy','colourwreath','colourdove','colourmemorial','colourpattern']});
+const qc = QUICK.find(q=>q.id==='q-colour'); qc.title = 'Remembrance colouring'; qc.label = 'Pre-primary – Year 6'; qc.years = [0,6];
+qc.tip = 'There are six colouring pages. The poppy pattern is detailed enough for older students as a calm activity after the minute’s silence.';
+
+/* ---------- even more quick lessons ---------- */
+const TF = [
+  ['The fighting of the First World War stopped at 11am on 11 November 1918.', true, 'That is why we pause at 11am on 11 November.'],
+  ['Remembrance Day only remembers people from the First World War.', false, 'It remembers everyone who served and died in all wars, conflicts and peacekeeping.'],
+  ['Poppies grew in the battlefields of France and Belgium.', true, 'They were among the first flowers to grow in the churned-up ground.'],
+  ['Anzac Day and Remembrance Day are on the same day.', false, 'Anzac Day is 25 April. Remembrance Day is 11 November.'],
+  ['The Last Post is played on a bugle.', true, 'It was once played to mark the end of a soldier’s day.'],
+  ['Rosemary is the main symbol of Remembrance Day.', false, 'The poppy is. Rosemary is worn on Anzac Day.'],
+  ['Nurses also served in the First World War.', true, 'Nurses served close to the fighting, and some were awarded medals for bravery.']
+];
+QUICK.push(
+  {
+    id:'q-animals', title:'Animals in war', years:[1,5], label:'Years 1–5', time:'40 minutes', setup:'Print the fact cards',
+    materials:['Pencils and colouring pencils'],
+    tip:'Some children may be upset that most horses did not come home. Focus on how much the soldiers cared for their animals.',
+    steps:[
+      step('Hook','5 min','Slide 1. Ask: how might animals have helped in a war?'),
+      step('Meet the animals','15 min','Slides 2–5. Horses, donkeys, pigeons and dogs. Pause on each to discuss how it helped.'),
+      step('Fact card','15 min','Slide 6. Students choose one animal, draw it and complete a fact card.'),
+      step('Share','5 min','Students share their card with a partner.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Animals in war</h1><p>How might animals have helped?</p>`, n:'Take a few ideas before moving on.'},
+      {h:`<p class="kicker">Horses</p><h2>The Australian Light Horse rode tough horses called Walers.</h2><p>More than 130,000 Australian horses went to the war. Only one, named Sandy, came home to Australia.</p>`, n:'The Throssell brothers from Northam rode with the 10th Light Horse.'},
+      {h:`<p class="kicker">Donkeys</p><h2>At Gallipoli, John Simpson Kirkpatrick used a donkey to carry wounded soldiers to safety.</h2><p>He enlisted at Blackboy Hill, near Perth.</p>`, n:'Simpson is one of the People to research cards in the Years 5–6 lesson.'},
+      {h:`<p class="kicker">Pigeons</p><h2>Pigeons carried messages in tiny tubes on their legs.</h2><p>They could find their way home even when other ways of sending messages had failed.</p>`, n:'Ask: why might a pigeon get through when a person couldn’t?'},
+      {h:`<p class="kicker">Dogs</p><h2>Dogs carried messages and helped find wounded soldiers.</h2><p>Soldiers often kept dogs as mascots and friends too.</p>`, n:'Many students will have pets; invite connections.'},
+      {c:'light', h:`<p class="kicker">Make a fact card</p><ol class="steps"><li>Choose an animal.</li><li>Draw it in the box.</li><li>Write how it helped.</li><li>Write one amazing fact.</li></ol>`, n:'Display the cards together as an “Animals in war” wall.'}
+    ]
+  },
+  {
+    id:'q-truefalse', title:'True or false?', years:[2,6], label:'Years 2–6', time:'20 minutes', setup:'None',
+    materials:['Nothing extra: students stand up for true and stay seated for false'],
+    tip:'A great revision game after a main lesson, or for the day after the assembly.',
+    steps:[
+      step('Explain the game','2 min','Slide 2. Stand up for true, stay seated for false.'),
+      step('Play','15 min','Each statement is followed by the answer slide. Ask a student to explain before revealing.'),
+      step('Wrap up','3 min','Which answer surprised you most?')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>True or false?</h1>`, n:'Clear a little space so students can stand.'},
+      {c:'light', h:`<p class="kicker">How to play</p><ol class="steps"><li>Read the statement.</li><li>Stand up if you think it is true.</li><li>Stay seated if you think it is false.</li></ol>`, n:'Model with an easy one: “Today is a school day.”'},
+      ...TF.flatMap(([q,a,why],k)=>[
+        {h:`<p class="kicker">Statement ${k+1}</p><h2>${q}</h2><p>Stand up for true. Stay seated for false.</p>`, n:'Ask one standing and one seated student to explain their thinking.'},
+        {c:'center', h:`<p class="big" style="color:${a?'#9DB39E':'#E9A49C'}">${a?'True':'False'}</p><p>${why}</p>`, n:'Reveal the answer.'}
+      ]),
+      {c:'center', h:`<h2>Which answer surprised you most?</h2>`, n:'Short class discussion.'}
+    ]
+  },
+  {
+    id:'q-flanders', title:'In Flanders Fields', years:[4,6], label:'Years 4–6', time:'45 minutes', setup:'Print the poem sheet',
+    materials:['One poem sheet per student'],
+    tip:'The last verse asks the living to keep fighting. With older students, discuss how the poem was written in the middle of the war, and how today we remember while hoping for peace.',
+    steps:[
+      step('Background','5 min','Slide 2. Who wrote the poem, and when.'),
+      step('Read aloud','10 min','Slide 3. Read the poem twice: once by you, once together.'),
+      step('Picture it','10 min','Slide 4. What can you see and hear? Students underline images on their sheet.'),
+      step('Questions','15 min','Students answer the questions on the sheet in pairs.'),
+      step('Connect','5 min','Slide 5. How did this poem help make the poppy a symbol?')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>In Flanders Fields</h1><p class="kicker">A poem by John McCrae, 1915</p>`, n:'Hand out the poem sheets.'},
+      {h:`<h2>John McCrae was a Canadian doctor.</h2><p>He wrote this poem in May 1915, near Ypres in Belgium, after the death of a friend. Poppies were growing nearby.</p>`, n:'Show Belgium and France on a map.'},
+      {h:`<p class="ode" style="font-size:2.3cqw;font-style:normal">${FLANDERS}</p>`, n:'Read it aloud slowly, then read it together.'},
+      {h:`<h2>What can you see and hear?</h2><div class="words"><span>poppies</span><span>crosses</span><span>larks singing</span><span>guns</span><span>dawn</span><span>sunset</span><span>a torch</span></div>`, n:'Students underline these images on their sheet.'},
+      {c:'center', h:`<h2>How did this poem help the poppy<br>become a symbol of remembrance?</h2>`, n:'Link back to the Teacher briefing: the RSL first sold poppies in Australia in 1921.'}
+    ]
+  },
+  {
+    id:'q-memorial', title:'Design a memorial', years:[3,6], label:'Years 3–6', time:'45 minutes', setup:'Print the design sheet',
+    materials:['Pencils, rulers and colouring pencils'],
+    tip:'If there is a memorial or honour board near your school, look at it together first.',
+    steps:[
+      step('What is a memorial?','5 min','Slide 2.'),
+      step('Kinds of memorials','10 min','Slide 3. Look at different types, including the Kings Park Honour Avenues.'),
+      step('Design brief','5 min','Slide 4. Go through the questions on the sheet.'),
+      step('Design','20 min','Students draw and label their memorial.'),
+      step('Gallery walk','5 min','Students leave their sheet on their desk and walk around to look at others.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Design a memorial</h1>`, n:'Hand out the design sheets.'},
+      {h:`<h2>A memorial is a place or object that helps us remember people.</h2><p>Memorials often list names, so each person is remembered.</p>`, n:'Ask: have you seen a memorial? Where?'},
+      {h:`<p class="kicker">Kinds of memorials</p><div class="sgrid"><div><b>Statues and obelisks</b><span>Tall stone or bronze monuments, like the State War Memorial in Kings Park.</span></div><div><b>Honour boards</b><span>Lists of names in schools, halls and clubs.</span></div><div><b>Avenues of trees</b><span>Like the Honour Avenues in Kings Park, with a plaque for each person.</span></div><div><b>Gardens and plaques</b><span>Quiet places to sit and remember.</span></div></div>`, n:'Show a photo of your nearest memorial if you can.'},
+      {c:'light', h:`<p class="kicker">Your design brief</p><ol class="steps"><li>Who does it remember?</li><li>What is it made from, and why?</li><li>What words are written on it?</li><li>Where would it stand?</li></ol>`, n:'Students answer these on the design sheet.'}
+    ]
+  },
+  {
+    id:'q-senses', title:'A senses poem', years:[3,6], label:'Years 3–6', time:'40 minutes', setup:'Print the poem frame',
+    materials:['One poem frame per student'],
+    tip:'Do this after the school service so students can draw on what they actually saw and heard.',
+    steps:[
+      step('Imagine','5 min','Slide 2. Students close their eyes while you describe a Remembrance Day service.'),
+      step('Senses brainstorm','10 min','Slide 3. Build a class word bank for each sense.'),
+      step('Model','5 min','Slide 4. Read the example lines.'),
+      step('Write','15 min','Students complete the frame and give it a title.'),
+      step('Share','5 min','Volunteers read one line aloud.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>At eleven o’clock</h1><p class="kicker">A senses poem</p>`, n:'Hand out the poem frames.'},
+      {c:'center', h:`<h2>Close your eyes.</h2><p>Imagine you are standing quietly at a Remembrance Day service. It is almost eleven o’clock.</p>`, n:'Describe the scene slowly: the crowd, the flag, the bugler, the quiet.'},
+      {h:`<p class="kicker">Use your senses</p><div class="sgrid"><div><b>See</b><span>poppies, a flag, a wreath, rows of people</span></div><div><b>Hear</b><span>the bugle, birds, wind, silence</span></div><div><b>Smell and touch</b><span>cut grass, flowers, a paper poppy in my hand</span></div><div><b>Feel</b><span>calm, sad, proud, thankful</span></div></div>`, n:'Add the class’s own words.'},
+      {h:`<p class="kicker">Example</p><p class="ode" style="font-style:normal">I see a red poppy pinned to a coat.<br>I hear one bugle, long and slow.<br>I feel the quiet settle on us all.<br>I remember the names I cannot see.</p>`, n:'Point out that each line starts with a sense.'}
+    ]
+  },
+  {
+    id:'q-pledge', title:'Our peace pledge', years:[0,2], label:'Pre-primary – Year 2', time:'30 minutes', setup:'5 minutes',
+    materials:['A large sheet of paper or card','Washable paint or textas for handprints or signatures'],
+    tip:'Display the pledge near the classroom door and revisit it during the year.',
+    steps:[
+      step('What is a promise?','5 min','Slide 2. A pledge is a promise we make together.'),
+      step('Peaceful actions','10 min','Slide 3. Students suggest kind and peaceful things they can do.'),
+      step('Write the pledge','5 min','Slide 4. Write the class pledge on the big sheet.'),
+      step('Sign it','10 min','Each child adds a handprint or signs their name.')
+    ],
+    slides:[
+      {c:'center', h:`<div style="width:10cqw;margin-bottom:2cqw">${P()}</div><h1>Our peace pledge</h1>`, n:'Have the big sheet ready on the board.'},
+      {h:`<h2>A pledge is a promise we make together.</h2><p>On Remembrance Day we remember, and we also hope for peace.</p>`, n:'Ask: what is a promise you have made?'},
+      {h:`<h2>How can we be peaceful at school?</h2><div class="words"><span>be kind</span><span>share</span><span>include everyone</span><span>listen</span><span>say sorry</span><span>help others</span></div>`, n:'Add the children’s ideas.'},
+      {c:'light', h:`<p class="kicker">Our pledge</p><h2>In our class we promise to…</h2><p>Choose three promises to write on our pledge.</p>`, n:'Vote on the three most important promises.'}
+    ]
+  }
+);
+
+/* ---------- printables list, grouped ---------- */
+function deckList(){
+  const main = [['assembly',null],['junior','Why do we wear a red poppy?'],['middle','How do Australians remember?'],['upper','Behind every name']].filter(([k])=>decks[k]);
+  return [...main.map(([k,t])=>({key:k,title:t})), ...QUICK.map(q=>({key:q.id,title:q.title}))];
+}
+function renderSheetList(){
+  const row = (id,s)=>`<li><div><b>${s.title}</b><span class="meta">For: ${s.use}</span></div><div class="sbtns"><button class="btn" type="button" data-sheet="${id}">Preview</button><button class="btn primary" type="button" onclick="printSheet('${id}')">Print</button></div></li>`;
+  const entries = Object.entries(SHEETS);
+  document.getElementById('sheetList').innerHTML = `<li class="grouphead">Worksheets and templates</li>` + entries.filter(([,s])=>s.g!=='colour').map(([i,s])=>row(i,s)).join('')
+    + `<li class="grouphead">Colouring pages</li>` + entries.filter(([,s])=>s.g==='colour').map(([i,s])=>row(i,s)).join('');
+  document.getElementById('pptxList').innerHTML = deckList().map(d=>`<li><div><b>${d.title}</b><span class="meta">${decks[d.key]?decks[d.key].length:QUICK.find(q=>q.id===d.key).slides.length} slides, with teacher notes</span></div><div class="sbtns"><button class="btn" type="button" data-pptx="${d.key}" data-title="${d.title}">Download PowerPoint</button></div></li>`).join('');
+}
+
+function deckTitle(k){ const m={junior:'Why do we wear a red poppy?',middle:'How do Australians remember?',upper:'Behind every name'}; if(m[k]) return m[k]; const q=QUICK.find(x=>x.id===k); return q?q.title:'Slides'; }
+/* ---------- PowerPoint export (built in the browser with PptxGenJS) ---------- */
+const PPTX_SRC = 'https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js';
+let pptxLib = null;
+function loadPptx(){
+  if(window.PptxGenJS) return Promise.resolve();
+  if(!pptxLib) pptxLib = new Promise((res, rej)=>{ const s=document.createElement('script'); s.src=PPTX_SRC; s.onload=res; s.onerror=()=>{ pptxLib=null; rej(new Error('Could not load PowerPoint library')); }; document.head.appendChild(s); });
+  return pptxLib;
+}
+const toHex = c => { const m = (c||'').match(/[\d.]+/g); if(!m || (m.length===4 && +m[3]===0)) return null; return m.slice(0,3).map(x=>Math.round(+x).toString(16).padStart(2,'0')).join('').toUpperCase(); };
+const inch = v => v/96;
+async function svgToPng(svg, w, h){
+  const clone = svg.cloneNode(true);
+  clone.setAttribute('xmlns','http://www.w3.org/2000/svg'); clone.setAttribute('width', Math.round(w)); clone.setAttribute('height', Math.round(h)); clone.removeAttribute('style');
+  if(clone.querySelector('use')) clone.insertAdjacentHTML('afterbegin', '<defs>'+document.getElementById('poppy').outerHTML+'</defs>');
+  const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(clone));
+  await img.decode();
+  const c = document.createElement('canvas'); c.width = Math.max(1,Math.round(w*2)); c.height = Math.max(1,Math.round(h*2));
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); return c.toDataURL('image/png');
+}
+function textRuns(el){
+  const out = [];
+  if(el.tagName==='LI'){ const list = el.parentElement; const n = [...list.children].indexOf(el)+1; out.push({text: list.tagName==='OL' ? n+'. ' : '• ', options:{}}); }
+  (function walk(node, bold, color, italic){
+    node.childNodes.forEach(ch=>{
+      if(ch.nodeType===3){ const t = ch.textContent.replace(/\s+/g,' '); if(t) out.push({text:t, options:{bold, color, italic}}); }
+      else if(ch.nodeName==='BR'){ if(out.length) out[out.length-1].options.breakLine = true; }
+      else if(ch.nodeType===1 && ch.nodeName!=='svg'){ const cs = getComputedStyle(ch); walk(ch, +cs.fontWeight>=600, toHex(cs.color), cs.fontStyle==='italic'); if(parseFloat(cs.marginRight)>0 && out.length) out[out.length-1].text += ' '; }
+    });
+  })(el, +getComputedStyle(el).fontWeight>=600, toHex(getComputedStyle(el).color), getComputedStyle(el).fontStyle==='italic');
+  if(out.length){ out[0].text = out[0].text.replace(/^\s+/,''); const l = out[out.length-1]; l.text = l.text.replace(/\s+$/,''); }
+  return out.filter(r=>r.text || r.options.breakLine);
+}
+async function slideToPptx(pptx, slideEl, stageRect, note){
+  const sl = pptx.addSlide();
+  sl.background = { color: toHex(getComputedStyle(slideEl).backgroundColor) || toHex(getComputedStyle(slideEl.parentElement).backgroundColor) || '1B231E' };
+  const pos = r => ({ x: inch(r.left-stageRect.left), y: inch(r.top-stageRect.top), w: inch(r.width), h: inch(r.height) });
+  async function walk(el){
+    for(const ch of el.children){
+      const r = ch.getBoundingClientRect(); if(!r.width || !r.height) continue;
+      if(ch.tagName.toLowerCase()==='svg'){ sl.addImage({ data: await svgToPng(ch, r.width, r.height), ...pos(r) }); continue; }
+      const cs = getComputedStyle(ch), p = pos(r);
+      const bw = s => cs['border'+s+'Style']!=='none' ? parseFloat(cs['border'+s+'Width']) : 0;
+      const [bt,br,bb,bl] = ['Top','Right','Bottom','Left'].map(bw);
+      const bg = toHex(cs.backgroundColor), boxed = bt&&br&&bb&&bl;
+      if(boxed || bg){
+        sl.addShape(parseFloat(cs.borderTopLeftRadius)>0 ? pptx.ShapeType.roundRect : pptx.ShapeType.rect, { ...p,
+          fill: bg ? { color: bg } : { type:'none' },
+          line: boxed ? { color: toHex(cs.borderTopColor)||'888888', width: Math.max(.5, bt*.75), dashType: cs.borderTopStyle==='dashed' ? 'dash' : 'solid' } : { type:'none' },
+          rectRadius: Math.min(.5, parseFloat(cs.borderTopLeftRadius)/96/Math.min(p.w,p.h)) });
+      } else if(bt) sl.addShape(pptx.ShapeType.line, { x:p.x, y:p.y, w:p.w, h:0, line:{ color: toHex(cs.borderTopColor)||'E2483B', width: bt*.75 } });
+      else if(bl) sl.addShape(pptx.ShapeType.line, { x:p.x, y:p.y, w:0, h:p.h, line:{ color: toHex(cs.borderLeftColor)||'E2483B', width: bl*.75 } });
+      const hasText = [...ch.childNodes].some(n=>n.nodeType===3 && n.textContent.trim());
+      if(hasText){
+        const runs = textRuns(ch);
+        const sans = /Archivo|Arial|Helvetica|sans/i.test(cs.fontFamily);
+        const padL = parseFloat(cs.paddingLeft)+bl, padT = parseFloat(cs.paddingTop)+bt;
+        const centred = !boxed && cs.textAlign==='center', tx = p.x + inch(boxed?0:padL);
+        sl.addText(runs, { x: centred ? .5 : tx, y: p.y + inch(boxed?0:padT), w: centred ? 12.333 : (boxed ? p.w : Math.min(p.w*1.12 + .1, 13.1 - tx)), h: p.h,
+          fontFace: sans ? 'Arial' : 'Georgia', fontSize: Math.round(parseFloat(cs.fontSize)*.75*(sans?.96:.86)*10)/10, color: toHex(cs.color)||'111111',
+          align: boxed || cs.textAlign==='center' ? 'center' : 'left', valign: boxed ? 'middle' : 'top', margin: 0,
+          lineSpacing: Math.round(parseFloat(cs.lineHeight)*.75*(sans?.96:.88)) || undefined, fit:'none', wrap:true });
+      } else await walk(ch);
+    }
+  }
+  await walk(slideEl);
+  if(note) sl.addNotes(note);
+}
+async function exportDeck(key, title, btn){
+  const deck = decks[key] || (QUICK.find(q=>q.id===key)||{}).slides; if(!deck) return;
+  const label = btn ? btn.textContent : '';
+  if(btn){ btn.disabled = true; btn.textContent = 'Preparing…'; }
+  const host = document.createElement('div');
+  host.style.cssText = 'position:fixed;left:-20000px;top:0;width:1280px;pointer-events:none;--stage:#1B231E;--stage-ink:#ECEEE9';
+  host.innerHTML = '<div class="stage" style="width:1280px;border-radius:0"><div class="slide"></div></div>';
+  document.body.appendChild(host);
+  try{
+    await loadPptx(); try{ await document.fonts.ready; }catch(e){}
+    const pptx = new PptxGenJS(); pptx.layout = 'LAYOUT_WIDE'; pptx.title = title;
+    const stage = host.querySelector('.stage'), slideEl = host.querySelector('.slide');
+    for(const s of deck){
+      slideEl.className = 'slide ' + (s.c||''); slideEl.innerHTML = s.h;
+      await new Promise(r=>requestAnimationFrame(()=>r()));
+      await slideToPptx(pptx, slideEl, stage.getBoundingClientRect(), s.n);
+    }
+    await pptx.writeFile({ fileName: 'Remembrance Day - ' + title.replace(/[\\/:*?"<>|]/g,'') + '.pptx' });
+    if(btn) btn.textContent = 'Downloaded';
+  }catch(e){
+    console.error(e); if(btn) btn.textContent = 'Couldn’t create file. Check your internet connection.';
+  }finally{
+    host.remove(); if(btn) setTimeout(()=>{ btn.disabled = false; btn.textContent = label; }, 3000);
+  }
+}
+document.addEventListener('click', e=>{ const b = e.target.closest('[data-pptx]'); if(b){ e.preventDefault(); exportDeck(b.dataset.pptx, b.dataset.title || deckTitle(b.dataset.pptx), b); } });
+renderSheetList();
 
 const qlist = document.getElementById('qlist'), qdetail = document.getElementById('qdetail');
 let qFilter = 'all', qCurrent = null;
